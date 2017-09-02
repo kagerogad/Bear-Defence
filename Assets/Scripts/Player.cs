@@ -27,7 +27,6 @@ public class Player : MonoBehaviour {
 		floorMask = LayerMask.GetMask ("Floor");
 		playerRB = GetComponent<Rigidbody> ();
 
-		pickupTimer = startPickUpTimer;
 	}
 
 	void FixedUpdate() {
@@ -38,12 +37,14 @@ public class Player : MonoBehaviour {
 		Turn ();
 
 		if (isObjectSelected && !isCarrying && Input.GetKeyDown(KeyCode.E)) {
-			if (pickupTimer == startPickUpTimer) {
+			if (pickupTimer <= 0f) {
 				PickUp ();
+				pickupTimer = startPickUpTimer;
 			}
 		} else if (isCarrying && Input.GetKeyDown(KeyCode.E)) {
-			if (pickupTimer == startPickUpTimer) {
+			if (pickupTimer <= 0f) {
 				Drop ();
+				pickupTimer = startPickUpTimer;
 			}
 		}
 
@@ -72,6 +73,7 @@ public class Player : MonoBehaviour {
 	}
 
 	void PickUp() {
+		selectedObject.transform.SetPositionAndRotation (holdPosition.position, holdPosition.rotation);
 		selectedObject.transform.SetParent (holdPosition);
 		isCarrying = true;
 		Debug.Log ("PickedUp");
