@@ -6,6 +6,7 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 	//Checking
 	public float speed;
+	public float startHealth;
 
 	public Transform holdPosition;
 
@@ -15,6 +16,7 @@ public class Player : MonoBehaviour {
 	private Transform selectedObject;
 	private bool isObjectSelected;
 	private bool isCarrying;
+	private float health;
 
 	private int floorMask;
 	private float camRayLength = 100f;
@@ -26,7 +28,7 @@ public class Player : MonoBehaviour {
 	void Awake() {
 		floorMask = LayerMask.GetMask ("Floor");
 		playerRB = GetComponent<Rigidbody> ();
-
+		health = startHealth;
 	}
 
 	void FixedUpdate() {
@@ -93,6 +95,10 @@ public class Player : MonoBehaviour {
 	public void ObjectedDeselected() {
 		selectedObject = null;
 		isObjectSelected = false;
+	}
+
+	public void Damage(float damage) {
+		health -= damage;
 	}
 
 }
