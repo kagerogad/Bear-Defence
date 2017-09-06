@@ -2,23 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
-public class Enemy : MonoBehaviour {
+public class Enemy : MonoBehaviour, IsDamageable {
+
+	[Header("Enemy Attributes")]
 	public float speed;
+	public float startHealth;
+
+	[Header("References")]
+	public Image healthBar;
 
 	Transform player;
 	NavMeshAgent nav;
 	bool isTouchingPlayer;
+	float health;
 
 	// Use this for initialization
 	void Start () {
 		player = GameObject.FindGameObjectWithTag ("Player").transform;
 		nav = GetComponent<NavMeshAgent> ();
+
+		health = startHealth;
 	}
 
 	// Update is called once per frame
 	void Update () {
 		Move ();
+
+		if (health <= 0f) {
+			Die ();
+		}
 	}
 
 	void Move() {
@@ -28,7 +42,36 @@ public class Enemy : MonoBehaviour {
 		nav.acceleration = 100f;
 		nav.speed = speed;
 	}
-		
+
+	void OnTriggerEnter(Collider col) {
+		GameObject go = col.gameObject;
+
+		if (go.CompareTag("Player")) {
+			isTouchingPlayer = true;
+		}
+	}
+
+	void OnTriggerExit(Collider col) {
+		GameObject go = col.gameObject;
+
+		if (go.CompareTag("Player")) {
+			isTouchingPlayer = false;
+		}
+	}
+
+	public void TakeDamage(float damageTaken) {
+		health -= damageTaken;
+		healthBar.fillAmount = health / startHealth;
+	}
+
+	public void Heal(float amountHealed) {
+		health += amountHealed;
+		healthBar.fillAmount = health / startHealth;
+	}
+
+	public void Die() {
+		Destroy (gameObject);
+	}
 		
 }
 

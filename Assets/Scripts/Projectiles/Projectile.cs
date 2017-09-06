@@ -5,11 +5,10 @@ using UnityEngine;
 public class Projectile : MonoBehaviour {
 
 	protected Transform target;
-	public float damage;
 
 	public float Speed;
+	public float damage;
 	public float timeTillDeath = 3f;
-	public float dbd; // Distance to enemy Before Death
 
 
 
@@ -17,10 +16,9 @@ public class Projectile : MonoBehaviour {
 
 	public void SetTarget(Transform target) {
 		this.target = target;
-	}
-
-	public void SetDirection(Vector3 direction) {
-		dir = direction;
+		dir = target.position - transform.position;
+		dir.y = 0f;
+		dir = dir.normalized;
 	}
 
 	public void Travel() {
@@ -33,9 +31,26 @@ public class Projectile : MonoBehaviour {
 			Destroy (gameObject);
 			return;
 		}
+
+		timeTillDeath -= Time.deltaTime;
+
+
+		if (timeTillDeath <= 0f) {
+			Destroy (gameObject);
+		}
+
 		Travel ();
 
 
+	}
+
+	void OnTriggerEnter(Collider col) {
+		GameObject go = col.gameObject;
+
+		if (go.CompareTag("Enemy")) {
+			go.GetComponent<Enemy> ().TakeDamage (damage);
+			Destroy (gameObject);
+		}
 	}
 		
 }

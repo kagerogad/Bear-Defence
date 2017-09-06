@@ -4,21 +4,28 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(SphereCollider))]
-public class Turret : MonoBehaviour {
+public class Turret : MonoBehaviour, IsDamageable {
 
 	[Header("Turret Attributes")]
 	public string enemyTag;
 	public float range;
 	public float turnSpeed;
+	public float rateOfFire = 1f;
+
+	private float rateOfFire_;
 
 	[Header("Turret References")]
 	public Transform partToRotate;
+	public Transform firingPoint;
+	public GameObject projectile;
 
 
 	private Transform target;
+	private bool isOn;
 
 
 	void Start() {
+		rateOfFire_ = rateOfFire;
 		InvokeRepeating ("UpdateTarget", 0f, 0.5f);
 	}
 
@@ -27,7 +34,16 @@ public class Turret : MonoBehaviour {
 			return;
 		}
 
-		Aim (target);
+		rateOfFire_ -= Time.deltaTime;
+
+		if (isOn) {
+			Aim (target);
+			if (rateOfFire_ <= 0f) {
+				Fire ();
+				rateOfFire_ = rateOfFire;
+			}
+		}
+
 	}
 
 	public void UpdateTarget() {
@@ -62,6 +78,38 @@ public class Turret : MonoBehaviour {
 		partToRotate.rotation = Quaternion.Euler (0f, rotation.y, 0f);
 	}
 
+	void Fire() {
+		GameObject proj = (GameObject)Instantiate (projectile, firingPoint.position, firingPoint.rotation);
+		proj.GetComponent<Projectile> ().SetTarget (target);
+	}
+
+
+
+
+
+	public void TakeDamage(float damageTaken) {
+
+	}
+
+	public void Heal(float amountHealed) {
+
+	}
+
+	public void Die() {
+
+	}
+
+
+
+
+
+	void OnTriggerEnter(Collider col) {
+		GameObject go = col.gameObject;
+		if (go.CompareTag("Battery")) {
+			isOn = true;
+		}
+	}
+
 	void OnTriggerStay(Collider col) {
 		GameObject go = col.gameObject;
 		Battery bat = null;
@@ -76,7 +124,7 @@ public class Turret : MonoBehaviour {
 	void OnTriggerExit(Collider col) {
 		GameObject go = col.gameObject;
 		if (go.CompareTag("Battery")) {
-			Debug.Log ("Battery has exited");
+			isOn = false;
 		}
 	}
 }
