@@ -21,6 +21,8 @@ public class Player : MonoBehaviour {
 	private int floorMask;
 	private float camRayLength = 100f;
 
+	private Animator anim;
+
 	//Timers
 	public float startPickUpTimer = 1f;
 	private float pickupTimer;
@@ -29,6 +31,7 @@ public class Player : MonoBehaviour {
 		floorMask = LayerMask.GetMask ("Floor");
 		playerRB = GetComponent<Rigidbody> ();
 		health = startHealth;
+		anim = GetComponent<Animator> ();
 	}
 
 	void FixedUpdate() {
@@ -37,6 +40,7 @@ public class Player : MonoBehaviour {
 
 		Move (horizontal, vertical);
 		Turn ();
+		Animate (horizontal, vertical);
 
 		if (isObjectSelected && !isCarrying && Input.GetKeyDown(KeyCode.E)) {
 			if (pickupTimer <= 0f) {
@@ -85,6 +89,11 @@ public class Player : MonoBehaviour {
 		Debug.Log ("Dropped");
 		holdPosition.DetachChildren ();
 		isCarrying = false;
+	}
+
+	void Animate(float h, float v) {
+		bool running = h != 0f || v != 0f;
+		anim.SetBool ("IsRunning", running);
 	}
 
 	public void ObjectSelected(Transform selectedObject) {
