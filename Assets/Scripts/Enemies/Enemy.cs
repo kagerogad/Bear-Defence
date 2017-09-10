@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour, IsDamageable {
 	[Header("Enemy Attributes")]
 	public float speed;
 	public float startHealth;
+	public float cost;
 
 	[Header("References")]
 	public Image healthBar;
