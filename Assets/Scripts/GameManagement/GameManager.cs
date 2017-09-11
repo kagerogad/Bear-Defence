@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
@@ -18,11 +19,13 @@ public class GameManager : MonoBehaviour {
 
 	[Header("References")]
 	public EnemyArray enemyArray;
+	public GameObject startRoundButton;
+	public Text roundCounter;
 
 
 	private float playerCurrentCurrency;
 	private float enemyCurrentCurrency;
-	private int roundNumber = 1;
+	private int roundNumber = 0;
 
 
 	private float timer;
@@ -64,8 +67,11 @@ public class GameManager : MonoBehaviour {
 			}
 			if (enemyCurrentCurrency <= 0f) {
 				roundStarted = false;
+				startRoundButton.SetActive (true);
 			}
 		}
+
+
 	}
 
 
@@ -84,6 +90,7 @@ public class GameManager : MonoBehaviour {
 		enemyStartCurrency = enemyStartCurrency * enemyCurrencyMultiplier;
 		enemyCurrentCurrency = enemyStartCurrency;
 		roundNumber = roundNumber + 1;
+		roundCounter.text = "Round " + roundNumber.ToString ();
 
 		roundStarted = true;
 	}

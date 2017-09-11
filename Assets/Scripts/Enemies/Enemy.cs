@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour, IsDamageable {
 
 	[Header("Enemy Attributes")]
 	public float speed;
+	public float damage;
 	public float startHealth;
 	public float cost;
 
@@ -49,6 +50,7 @@ public class Enemy : MonoBehaviour, IsDamageable {
 
 		if (go.CompareTag("Player")) {
 			isTouchingPlayer = true;
+			go.GetComponent<Player> ().Damage (damage);
 		}
 	}
 

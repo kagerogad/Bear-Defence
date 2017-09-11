@@ -1,14 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Player : MonoBehaviour {
-	//Checking
+
+	[Header("Player Attributes")]
 	public float speed;
 	public float startHealth;
 
+	[Header("Player References")]
 	public Transform holdPosition;
+	public Image healthBar;
 
 	private Rigidbody playerRB;
 	private Vector3 movement;
@@ -108,6 +112,7 @@ public class Player : MonoBehaviour {
 
 	public void Damage(float damage) {
 		health -= damage;
+		healthBar.fillAmount = health / startHealth;
 	}
 
 }
