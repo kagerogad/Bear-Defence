@@ -13,6 +13,7 @@ public class Player : MonoBehaviour {
 	[Header("Player References")]
 	public Transform holdPosition;
 	public Image healthBar;
+	public GameObject building;
 
 	private Rigidbody playerRB;
 	private Vector3 movement;
@@ -27,9 +28,12 @@ public class Player : MonoBehaviour {
 
 	private Animator anim;
 
-	//Timers
+	[Header("Timers")]
 	public float startPickUpTimer = 1f;
+	public float startBuildTimer = 1f;
+
 	private float pickupTimer;
+	private float buildTimer;
 
 	void Awake() {
 		floorMask = LayerMask.GetMask ("Floor");
@@ -58,6 +62,13 @@ public class Player : MonoBehaviour {
 			}
 		}
 
+		if (Input.GetKeyDown(KeyCode.F) & buildTimer <= 0f) {
+			Build ();
+			buildTimer = startBuildTimer;
+		}
+
+
+		buildTimer -= Time.deltaTime;
 		pickupTimer -= Time.deltaTime;
 	}
 
@@ -98,6 +109,11 @@ public class Player : MonoBehaviour {
 	void Animate(float h, float v) {
 		bool running = h != 0f || v != 0f;
 		anim.SetBool ("IsRunning", running);
+	}
+
+	void Build() {
+		Instantiate (building, holdPosition.position, holdPosition.rotation);
+		return;
 	}
 
 	public void ObjectSelected(Transform selectedObject) {
