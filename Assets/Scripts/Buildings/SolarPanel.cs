@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class SolarPanel : MonoBehaviour {
 
-	public float chargeRate;
-
-
 	void OnTriggerStay(Collider col) {
 		GameObject go = col.gameObject;
 		Battery bat = null;
@@ -14,7 +11,7 @@ public class SolarPanel : MonoBehaviour {
 			bat = go.GetComponent<Battery> ();
 		}
 		if (bat != null) {
-			bat.Charge (chargeRate);
+			bat.Charge (.5f);
 		}
 	}
 
