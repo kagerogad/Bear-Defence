@@ -1,0 +1,184 @@
+fileFormatVersion: 2
+guid: 07c5c21f263bf49b09cbc17aef43d3b2
+timeCreated: 1505532391
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: Armature
+    100002: BackPack
+    100004: Bone.004
+    100006: Bone.004_end
+    100008: Chest
+    100010: Eyes
+    100012: Foot.L
+    100014: Foot.L_end
+    100016: Foot.R
+    100018: Foot.R_end
+    100020: FootIk.L
+    100022: FootIk.L_end
+    100024: FootIk.R
+    100026: FootIk.R_end
+    100028: Hand.L
+    100030: Hand.L_end
+    100032: Hand.R
+    100034: Hand.R_end
+    100036: Head
+    100038: Head_end
+    100040: Helmet
+    100042: Leg.L
+    100044: Leg.R
+    100046: LowerArm.L
+    100048: LowerArm.R
+    100050: LowerLeg.L
+    100052: LowerLeg.R
+    100054: LowerPoleTarget.L
+    100056: LowerPoleTarget.L_end
+    100058: LowerPoleTarget.R
+    100060: LowerPoleTarget.R_end
+    100062: Pelvis
+    100064: Pelvis.001
+    100066: Pelvis.002
+    100068: Pelvis.003
+    100070: Pelvis.004
+    100072: Pelvis.005
+    100074: Pelvis.005_end
+    100076: Raptor
+    100078: //RootNode
+    100080: Spine
+    100082: UpperArm.L
+    100084: UpperArm.R
+    100086: UpperNeck
+    100088: UpperThigh.L
+    100090: UpperThigh.R
+    400000: Armature
+    400002: BackPack
+    400004: Bone.004
+    400006: Bone.004_end
+    400008: Chest
+    400010: Eyes
+    400012: Foot.L
+    400014: Foot.L_end
+    400016: Foot.R
+    400018: Foot.R_end
+    400020: FootIk.L
+    400022: FootIk.L_end
+    400024: FootIk.R
+    400026: FootIk.R_end
+    400028: Hand.L
+    400030: Hand.L_end
+    400032: Hand.R
+    400034: Hand.R_end
+    400036: Head
+    400038: Head_end
+    400040: Helmet
+    400042: Leg.L
+    400044: Leg.R
+    400046: LowerArm.L
+    400048: LowerArm.R
+    400050: LowerLeg.L
+    400052: LowerLeg.R
+    400054: LowerPoleTarget.L
+    400056: LowerPoleTarget.L_end
+    400058: LowerPoleTarget.R
+    400060: LowerPoleTarget.R_end
+    400062: Pelvis
+    400064: Pelvis.001
+    400066: Pelvis.002
+    400068: Pelvis.003
+    400070: Pelvis.004
+    400072: Pelvis.005
+    400074: Pelvis.005_end
+    400076: Raptor
+    400078: //RootNode
+    400080: Spine
+    400082: UpperArm.L
+    400084: UpperArm.R
+    400086: UpperNeck
+    400088: UpperThigh.L
+    400090: UpperThigh.R
+    4300000: Raptor
+    4300002: BackPack
+    4300004: Helmet
+    4300006: Eyes
+    7400000: Armature|RunCycle
+    9500000: //RootNode
+    13700000: BackPack
+    13700002: Eyes
+    13700004: Helmet
+    13700006: Raptor
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
