@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour {
 
 	[Header("Game Settings")]
 	public float enemyStartCurrency = 100f;
-	public float playerStartCurrency = 100f;
+	public static float playerCurrency = 100f;
 	public float enemyCurrencyMultiplier = 1.5f;
 	public float timeBetweenRounds = 30f;
 	public float timeBetweenSpawns = 3f;
@@ -21,9 +21,8 @@ public class GameManager : MonoBehaviour {
 	public EnemyArray enemyArray;
 	public GameObject startRoundButton;
 	public Text roundCounter;
+	public Text playerCurrencyText;
 
-
-	private float playerCurrentCurrency;
 	private float enemyCurrentCurrency;
 	private int roundNumber = 0;
 
@@ -42,7 +41,6 @@ public class GameManager : MonoBehaviour {
 			Destroy (gameObject);
 		}
 
-		playerCurrentCurrency = playerStartCurrency;
 		enemyCurrentCurrency = enemyStartCurrency;
 
 		rand = new System.Random ();
@@ -71,7 +69,7 @@ public class GameManager : MonoBehaviour {
 			}
 		}
 
-
+		UpdateCurrency ();
 	}
 
 
@@ -94,4 +92,9 @@ public class GameManager : MonoBehaviour {
 
 		roundStarted = true;
 	}
+
+	public void UpdateCurrency() {
+		playerCurrencyText.text = playerCurrency.ToString();
+	}
+		
 }
