@@ -103,7 +103,12 @@ public class Turret : InteractableObject, IsDamageable {
 	}
 
 	public void Heal(float amountHealed) {
-		durability += amountHealed;
+		if (durability + amountHealed > startDurability) {
+			durability = startDurability;
+		} else {
+			durability += amountHealed;
+		}
+		durabilityBar.fillAmount = durability / startDurability;
 	}
 
 	public void Die() {
