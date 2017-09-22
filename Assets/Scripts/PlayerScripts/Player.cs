@@ -22,6 +22,7 @@ public class Player : MonoBehaviour {
 	private bool isObjectSelected;
 	private bool isCarrying;
 	private float health;
+	private bool swing;
 
 	private int floorMask;
 	private float camRayLength = 100f;
@@ -45,10 +46,11 @@ public class Player : MonoBehaviour {
 	void FixedUpdate() {
 		float horizontal = Input.GetAxisRaw ("Horizontal");
 		float vertical = Input.GetAxisRaw ("Vertical");
+		swing = Input.GetKeyDown (KeyCode.R);
 
 		Move (horizontal, vertical);
 		Turn ();
-		Animate (horizontal, vertical);
+		Animate (horizontal, vertical, swing);
 
 		if (isObjectSelected && !isCarrying && Input.GetKeyDown(KeyCode.E)) {
 			if (pickupTimer <= 0f) {
@@ -66,6 +68,7 @@ public class Player : MonoBehaviour {
 			Build ();
 			buildTimer = startBuildTimer;
 		}
+			
 
 
 		buildTimer -= Time.deltaTime;
@@ -97,18 +100,20 @@ public class Player : MonoBehaviour {
 		selectedObject.transform.SetPositionAndRotation (holdPosition.position, holdPosition.rotation);
 		selectedObject.transform.SetParent (holdPosition);
 		isCarrying = true;
-		Debug.Log ("PickedUp");
 	}
 
 	void Drop() {
-		Debug.Log ("Dropped");
 		holdPosition.DetachChildren ();
 		isCarrying = false;
 	}
 
-	void Animate(float h, float v) {
+	void Animate(float h, float v, bool swing) {
 		bool running = h != 0f || v != 0f;
 		anim.SetBool ("IsRunning", running);
+		if (swing) {
+			anim.SetTrigger ("Swing");
+		}
+
 	}
 
 	void Build() {
@@ -129,6 +134,28 @@ public class Player : MonoBehaviour {
 	public void Damage(float damage) {
 		health -= damage;
 		healthBar.fillAmount = health / startHealth;
+	}
+
+	void OnTriggerEnter(Collider col) {
+		GameObject go = col.gameObject;
+
+		if (go.CompareTag ("Turret") & swing) {
+			Debug.Log ("Swung at turret");
+		} else {
+			Debug.Log (" ");
+		}
+
+		if (go.CompareTag("Battery")) {
+			go.GetComponent<InteractableObject> ().Selected (transform);
+		}
+	}
+
+	void OnTriggerExit(Collider col) {
+		GameObject go = col.gameObject;
+
+		if (go.CompareTag("Battery")) {
+			go.GetComponent<InteractableObject> ().DeSelected (transform);
+		}
 	}
 
 }
