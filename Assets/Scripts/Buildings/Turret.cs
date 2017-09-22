@@ -1,16 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(SphereCollider))]
-public class Turret : MonoBehaviour, IsDamageable {
+public class Turret : InteractableObject, IsDamageable {
 
 	[Header("Turret Attributes")]
 	public string enemyTag;
 	public float range;
 	public float turnSpeed;
 	public float rateOfFire = 1f;
+	public float startDurability = 100f;
+	public float durabilityLossPerShot = 10f;
 
 	private float rateOfFire_;
 
@@ -18,14 +21,18 @@ public class Turret : MonoBehaviour, IsDamageable {
 	public Transform partToRotate;
 	public Transform firingPoint;
 	public GameObject projectile;
-
+	public Image durabilityBar;
 
 	private Transform target;
 	private bool isOn;
+	private Rigidbody rb;
+	private float durability;
 
 
 	void Start() {
 		rateOfFire_ = rateOfFire;
+		rb = GetComponent<Rigidbody> ();
+		durability = startDurability;
 		InvokeRepeating ("UpdateTarget", 0f, 0.5f);
 	}
 
@@ -36,7 +43,7 @@ public class Turret : MonoBehaviour, IsDamageable {
 
 		rateOfFire_ -= Time.deltaTime;
 
-		if (isOn) {
+		if (isOn && durability > 0f) {
 			Aim (target);
 			if (rateOfFire_ <= 0f) {
 				Fire ();
@@ -68,7 +75,10 @@ public class Turret : MonoBehaviour, IsDamageable {
 
 	}
 
-
+	public override void Interact(Transform holdPosition) {
+		Heal (10f);
+	}
+		
 
 	public void Aim(Transform target) {
 		Vector3 dir = target.transform.position - transform.position;
@@ -81,8 +91,9 @@ public class Turret : MonoBehaviour, IsDamageable {
 	void Fire() {
 		GameObject proj = (GameObject)Instantiate (projectile, firingPoint.position, firingPoint.rotation);
 		proj.GetComponent<Projectile> ().SetTarget (target);
+		durability -= durabilityLossPerShot;
+		durabilityBar.fillAmount = durability / startDurability;
 	}
-
 
 
 
@@ -92,15 +103,13 @@ public class Turret : MonoBehaviour, IsDamageable {
 	}
 
 	public void Heal(float amountHealed) {
-
+		durability += amountHealed;
 	}
 
 	public void Die() {
 
 	}
-
-
-
+		
 
 
 	void OnTriggerEnter(Collider col) {

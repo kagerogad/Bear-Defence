@@ -54,7 +54,8 @@ public class Player : MonoBehaviour {
 
 		if (isObjectSelected && !isCarrying && Input.GetKeyDown(KeyCode.E)) {
 			if (pickupTimer <= 0f) {
-				PickUp ();
+				selectedObject.GetComponent<InteractableObject> ().Interact (holdPosition);
+				isCarrying = true;
 				pickupTimer = startPickUpTimer;
 			}
 		} else if (isCarrying && Input.GetKeyDown(KeyCode.E)) {
@@ -139,12 +140,9 @@ public class Player : MonoBehaviour {
 	void OnTriggerEnter(Collider col) {
 		GameObject go = col.gameObject;
 
-		if (go.CompareTag ("Turret") & swing) {
-			Debug.Log ("Swung at turret");
-		} else {
-			Debug.Log (" ");
+		if (go.CompareTag ("Turret")) {
+			go.GetComponent<InteractableObject> ().Selected (transform);
 		}
-
 		if (go.CompareTag("Battery")) {
 			go.GetComponent<InteractableObject> ().Selected (transform);
 		}
@@ -153,6 +151,9 @@ public class Player : MonoBehaviour {
 	void OnTriggerExit(Collider col) {
 		GameObject go = col.gameObject;
 
+		if (go.CompareTag("Turret")) {
+			go.GetComponent<InteractableObject> ().DeSelected (transform);
+		}
 		if (go.CompareTag("Battery")) {
 			go.GetComponent<InteractableObject> ().DeSelected (transform);
 		}

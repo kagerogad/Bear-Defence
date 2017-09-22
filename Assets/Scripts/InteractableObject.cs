@@ -10,7 +10,6 @@ public class InteractableObject : MonoBehaviour, IsInteractable {
 
 	protected Renderer rend;
 	protected Color startColor;
-	protected Transform player;
 
 
 	void Start() {
@@ -18,36 +17,27 @@ public class InteractableObject : MonoBehaviour, IsInteractable {
 		startColor = rend.material.color;
 	}
 
-	public void Selected(Transform player_) {
-		rend.material.color = selectedColor;
+	public virtual void Selected(Transform player_) {
+		if (rend != null) {
+			rend.material.color = selectedColor;
+		}
+
 		Transform player = player_;
 		player.GetComponent<Player> ().ObjectSelected (transform);
 	}
 
-	public void DeSelected(Transform player_) {
+	public virtual void DeSelected(Transform player_) {
 		Transform player = player_;
-		rend.material.color = startColor;
+		if (rend != null) {
+			rend.material.color = startColor;
+		}
+
 		player.GetComponent<Player> ().ObjectedDeselected ();
 	}
 
-	public void Interact() {
+	public virtual void Interact(Transform holdPosition) {
+		transform.SetPositionAndRotation (holdPosition.position, holdPosition.rotation);
+		transform.SetParent (holdPosition, true);
+	}
 		
-	}
-
-	/*void OnTriggerEnter(Collider col) {
-		GameObject go = col.gameObject;
-
-		if (go.CompareTag("Player")) {
-			Selected ();
-		}
-	}
-
-	void OnTriggerExit(Collider col) {
-		GameObject go = col.gameObject;
-
-		if (go.CompareTag("Player")) {
-			DeSelected ();
-		}
-	}*/
-
 }

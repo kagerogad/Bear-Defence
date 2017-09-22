@@ -4,7 +4,7 @@ using UnityEngine;
 
 interface IsInteractable {
 
-	void Interact ();
+	void Interact (Transform player);
 	void Selected (Transform player);
 	void DeSelected(Transform player);
 }
