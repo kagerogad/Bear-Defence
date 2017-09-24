@@ -326,6 +326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedColor: {r: 0.9191176, g: 0, b: 0.0950808, a: 1}
+  cost: 50
   enemyTag: Enemy
   range: 20
   turnSpeed: 25

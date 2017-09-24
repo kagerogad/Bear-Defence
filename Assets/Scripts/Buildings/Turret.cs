@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(SphereCollider))]
-public class Turret : InteractableObject, IsDamageable {
+public class Turret : PlaceableObject, IsDamageable {
 
 	[Header("Turret Attributes")]
 	public string enemyTag;

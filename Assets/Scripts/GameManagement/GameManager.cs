@@ -18,7 +18,9 @@ public class GameManager : MonoBehaviour {
 
 
 	[Header("References")]
+	public Transform player;
 	public EnemyArray enemyArray;
+	public Buildings buildings;
 	public GameObject startRoundButton;
 	public Text roundCounter;
 	public Text playerCurrencyText;
@@ -26,6 +28,7 @@ public class GameManager : MonoBehaviour {
 	private float enemyCurrentCurrency;
 	private int roundNumber = 0;
 
+	private GameObject selectedBuilding;
 
 	private float timer;
 	private bool roundStarted;
@@ -42,6 +45,7 @@ public class GameManager : MonoBehaviour {
 		}
 
 		enemyCurrentCurrency = enemyStartCurrency;
+		selectedBuilding = buildings.buildingsArray [0];
 
 		rand = new System.Random ();
 		enemySpawners = GameObject.FindGameObjectsWithTag ("EnemySpawner");
@@ -50,12 +54,6 @@ public class GameManager : MonoBehaviour {
 
 
 	void Update() {
-		/*timer -= Time.deltaTime;
-		if (timer <= 0f) {
-			SpawnEnemy (enemyArray.enemies[0]);
-			timer = timeBetweenRounds;
-		}*/
-
 		if (roundStarted) {
 			timer -= Time.deltaTime;
 			if (timer <= 0f) {
@@ -95,6 +93,23 @@ public class GameManager : MonoBehaviour {
 
 	public void UpdateCurrency() {
 		playerCurrencyText.text = playerCurrency.ToString();
+	}
+
+
+	//Building
+	public void Build() {
+		float cost = selectedBuilding.GetComponent<PlaceableObject> ().cost;
+		if (playerCurrency - cost >= 0f) {
+			playerCurrency -= cost;
+			Transform holdPosition = player.GetComponent<Player> ().holdPosition;
+			Instantiate (selectedBuilding, holdPosition.position, holdPosition.rotation);
+			Debug.Log ("Built something using Gamemanager");
+		}
+
+	}
+
+	public void ChangeSelectedBuilding(int index) {
+
 	}
 		
 }

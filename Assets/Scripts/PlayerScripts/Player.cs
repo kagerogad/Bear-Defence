@@ -125,7 +125,7 @@ public class Player : MonoBehaviour {
 	}
 
 	void Build() {
-		Instantiate (building, holdPosition.position, holdPosition.rotation);
+		GameManager.instance.Build();
 		return;
 	}
 
