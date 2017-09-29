@@ -141,7 +141,8 @@ public class Player : MonoBehaviour {
 
 	public void Damage(float damage) {
 		health -= damage;
-		healthBar.fillAmount = health / startHealth;
+        //healthBar.fillAmount = health / startHealth;
+        healthBar.rectTransform.localScale = new Vector3(1, health / startHealth, 1);
 	}
 
 	void OnTriggerEnter(Collider col) {
