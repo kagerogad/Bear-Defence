@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject startRoundButton;
 	public Text roundCounter;
 	public Text playerCurrencyText;
+	public GameObject selectionMenu;
 
 	private float enemyCurrentCurrency;
 	private int roundNumber = 0;
@@ -32,6 +33,8 @@ public class GameManager : MonoBehaviour {
 
 	private float timer;
 	private bool roundStarted;
+
+	private bool isPaused = false;
 
 
 	private GameObject[] enemySpawners;
@@ -43,6 +46,8 @@ public class GameManager : MonoBehaviour {
 		} else if (instance != this) {
 			Destroy (gameObject);
 		}
+
+
 
 		enemyCurrentCurrency = enemyStartCurrency;
 		selectedBuilding = buildings.buildingsArray [0];
@@ -68,6 +73,10 @@ public class GameManager : MonoBehaviour {
 		}
 
 		UpdateCurrency ();
+
+		if (Input.GetKeyDown(KeyCode.Tab)) {
+			MenuSelect ();
+		}
 	}
 
 
@@ -110,6 +119,23 @@ public class GameManager : MonoBehaviour {
 
 	public void ChangeSelectedBuilding(int index) {
 
+	}
+
+	public void UnLockArea() {
+
+	}
+
+
+
+	//UI
+	public void MenuSelect() {
+		isPaused = !isPaused;
+		selectionMenu.SetActive (isPaused);
+		if (isPaused) {
+			Time.timeScale = 0;
+		} else {
+			Time.timeScale = 1;
+		}
 	}
 		
 }

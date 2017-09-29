@@ -337,6 +337,7 @@ MonoBehaviour:
   firingPoint: {fileID: 4912949794526300}
   projectile: {fileID: 1196513729447746, guid: e5a0831a1ec8f4f899c185b04509e843, type: 2}
   durabilityBar: {fileID: 114575430248033040}
+  wire: {fileID: 1998723342544392, guid: 3e59b7b834d514d30a227955f76b86eb, type: 2}
 --- !u!114 &114532553425480778
 MonoBehaviour:
   m_ObjectHideFlags: 1

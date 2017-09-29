@@ -22,16 +22,15 @@ public class Turret : PlaceableObject, IsDamageable {
 	public Transform firingPoint;
 	public GameObject projectile;
 	public Image durabilityBar;
+	public GameObject wire;
 
 	private Transform target;
 	private bool isOn;
-	private Rigidbody rb;
 	private float durability;
 
 
 	void Start() {
 		rateOfFire_ = rateOfFire;
-		rb = GetComponent<Rigidbody> ();
 		durability = startDurability;
 		InvokeRepeating ("UpdateTarget", 0f, 0.5f);
 	}
@@ -74,10 +73,7 @@ public class Turret : PlaceableObject, IsDamageable {
 		}
 
 	}
-
-	public override void Interact(Transform holdPosition) {
-		Heal (10f);
-	}
+		
 		
 
 	public void Aim(Transform target) {
