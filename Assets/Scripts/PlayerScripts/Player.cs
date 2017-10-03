@@ -124,10 +124,10 @@ public class Player : MonoBehaviour {
 
 	}
 
-	void Build() {
+	/*void Build() {
 		GameManager.instance.Build();
 		return;
-	}
+	}*/
 
 	public void ObjectSelected(Transform selectedObject) {
 		this.selectedObject = selectedObject;

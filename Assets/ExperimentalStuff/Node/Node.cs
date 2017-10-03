@@ -4,27 +4,16 @@ using UnityEngine;
 
 public class Node : MonoBehaviour {
 
-	public Color selectedColor;
-	public GameObject building;
+	public Vector3 offset;
 
-	private Renderer rend;
-	private Color startColor;
+	private GameObject building;
 
-	void Start() {
-		rend = GetComponent<Renderer> ();
-		startColor = rend.material.color;
+	public void Build(GameObject building) {
+		if (building != null) {
+			return;
+		}
+
+		GameManager.instance.Build1 (transform);
 	}
 
-	void OnMouseEnter() {
-		Debug.Log ("Mouse Entered");
-		rend.material.color = selectedColor;
-	}
-
-	void OnMouseExit() {
-		rend.material.color = startColor;
-	}
-
-	void OnMouseDown() {
-		Instantiate (building, transform.position, transform.rotation);
-	}
 }
