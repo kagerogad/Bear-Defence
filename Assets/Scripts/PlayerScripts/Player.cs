@@ -27,6 +27,12 @@ public class Player : MonoBehaviour {
 	private int floorMask;
 	private float camRayLength = 100f;
 
+	//-----------------------Test---------------------------//
+
+	private Transform tile;
+
+	//----------------------EndTest------------------------//
+
 	private Animator anim;
 
 	[Header("Timers")]
@@ -73,7 +79,11 @@ public class Player : MonoBehaviour {
 		}
 
 		if (Input.GetKeyDown(KeyCode.F) & buildTimer <= 0f) {
-			Build ();
+			//Build ();
+			if (tile != null) {
+				//GameManager.instance.Build1 (tile);
+				Instantiate(building, tile.position, tile.rotation);
+			}
 			buildTimer = startBuildTimer;
 		}
 			
@@ -104,6 +114,12 @@ public class Player : MonoBehaviour {
 		}
 	}
 
+	//-----------------------Test---------------------//
+	public void SetTile(Transform tile) {
+		this.tile = tile;
+		Debug.Log ("Tile has been set");
+	}
+	//---------------------EndTest--------------------//
 	void PickUp() {
 		selectedObject.transform.SetPositionAndRotation (holdPosition.position, holdPosition.rotation);
 		selectedObject.transform.SetParent (holdPosition);

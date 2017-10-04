@@ -16,4 +16,21 @@ public class Node : MonoBehaviour {
 		GameManager.instance.Build1 (transform);
 	}
 
+	void OnTriggerEnter(Collider col) {
+		GameObject go = col.gameObject;
+
+		if (go.CompareTag("Player")) {
+			go.GetComponent<Player> ().SetTile (transform);
+			Debug.Log ("Set tile transform");
+		}
+	}
+
+	void OnTriggerExit(Collider col) {
+		GameObject go = col.gameObject;
+
+		if (go.CompareTag("Player")) {
+			go.GetComponent<Player> ().SetTile (null);
+			Debug.Log ("De-Set tile transform");
+		}
+	}
 }

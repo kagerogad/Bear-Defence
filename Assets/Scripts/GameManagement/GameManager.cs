@@ -118,13 +118,14 @@ public class GameManager : MonoBehaviour {
 	}*/
 
 	public void Build1(Transform tile) {
-		float cost = selectedBuilding.GetComponent<PlaceableObject> ().cost;
+		/*float cost = selectedBuilding.GetComponent<PlaceableObject> ().cost;
 		if (playerCurrency - cost >= 0f) {
 			playerCurrency -= cost;
-			Transform holdPosition = player.GetComponent<Player> ().holdPosition;
+			//Transform holdPosition = player.GetComponent<Player> ().holdPosition;
 			Instantiate (selectedBuilding, tile.position, tile.rotation);
 			Debug.Log ("Built something using Gamemanager");
-		}
+		}*/
+		Instantiate (selectedBuilding, tile.position, tile.rotation);
 
 	}
 
