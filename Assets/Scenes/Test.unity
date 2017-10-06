@@ -532,6 +532,11 @@ Prefab:
       propertyPath: selectionMenu
       value: 
       objectReference: {fileID: 2007557592}
+    - target: {fileID: 82075069655576878, guid: 425412b6228484cb7aec286b144eab28,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.29
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 425412b6228484cb7aec286b144eab28, type: 2}
   m_IsPrefabParent: 0

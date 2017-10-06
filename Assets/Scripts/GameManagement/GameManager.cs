@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour {
 	public float timeBetweenRounds = 30f;
 	public float timeBetweenSpawns = 3f;
 
+	public float timeBuildPhase = 30f;
+	private float timeBuildPhase_;
+
 
 	[Header("References")]
 	public Transform player;
@@ -49,6 +52,7 @@ public class GameManager : MonoBehaviour {
 
 		enemyCurrentCurrency = enemyStartCurrency;
 		selectedBuilding = buildings.buildingsArray [0];
+		timeBuildPhase_ = timeBuildPhase;
 
 		rand = new System.Random ();
 		enemySpawners = GameObject.FindGameObjectsWithTag ("EnemySpawner");
@@ -67,6 +71,16 @@ public class GameManager : MonoBehaviour {
 			if (enemyCurrentCurrency <= 0f) {
 				roundStarted = false;
 				startRoundButton.SetActive (true);
+			}
+		}
+
+		if (!roundStarted) {
+			timeBuildPhase_ -= Time.deltaTime;
+			roundCounter.text = timeBuildPhase_.ToString ();
+
+			if (timeBuildPhase_ <= 0f) {
+				StartRound ();
+				timeBuildPhase_ = timeBuildPhase;
 			}
 		}
 
