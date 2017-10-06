@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Turret
   - EnemySpawner
+  - Tile
   layers:
   - Default
   - TransparentFX

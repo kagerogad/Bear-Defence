@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour {
 
 	private bool isPaused = false;
 
-
+	public GameObject tiles;
 	private GameObject[] enemySpawners;
 	public static System.Random rand;
 
@@ -46,8 +46,6 @@ public class GameManager : MonoBehaviour {
 		} else if (instance != this) {
 			Destroy (gameObject);
 		}
-
-
 
 		enemyCurrentCurrency = enemyStartCurrency;
 		selectedBuilding = buildings.buildingsArray [0];
