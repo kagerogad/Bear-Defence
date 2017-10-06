@@ -28,6 +28,8 @@ public class Battery : InteractableObject {
 				currentCharge = 0;
 			}
 		}
+		int curretChargeInt = (int)currentCharge;
+		gameObject.GetComponent<BatteryVisuals>().setCharge(curretChargeInt);
 		chargeBar.fillAmount = currentCharge / capacity;
 	}
 
@@ -38,7 +40,8 @@ public class Battery : InteractableObject {
 				currentCharge = capacity;
 			}
 		}
-
+		int curretChargeInt = (int)currentCharge;
+		gameObject.GetComponent<BatteryVisuals>().setCharge(curretChargeInt);
 		chargeBar.fillAmount = currentCharge / capacity;
 	}
 
