@@ -11,9 +11,14 @@ public class Enemy : MonoBehaviour, IsDamageable {
 	public float damage;
 	public float startHealth;
 	public float cost;
+	public int chanceOfDrop;
 
 	[Header("References")]
 	public Image healthBar;
+	public GameObject drop;
+
+	[Header("Drop Offset")]
+	public Vector3 offSet;
 
 	Transform player;
 	NavMeshAgent nav;
@@ -22,7 +27,7 @@ public class Enemy : MonoBehaviour, IsDamageable {
 
 	// Use this for initialization
 	void Start () {
-		player = GameObject.FindGameObjectWithTag ("Player").transform;
+		player = GameObject.Find("Bear").transform;
 		nav = GetComponent<NavMeshAgent> ();
 
 		health = startHealth;
@@ -73,7 +78,17 @@ public class Enemy : MonoBehaviour, IsDamageable {
 	}
 
 	public void Die() {
+		if (drop != null) {
+			DropObject (drop);
+		}
 		Destroy (gameObject);
+	}
+
+	public void DropObject(GameObject drop) {
+		int randomInt = GameManager.rand.Next (0, 100);
+		if (randomInt <= chanceOfDrop) {
+			Instantiate (drop, transform.position + offSet, transform.rotation);
+		}
 	}
 		
 }

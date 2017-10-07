@@ -22,6 +22,7 @@ public class Player : MonoBehaviour {
 	private bool isObjectSelected;
 	private bool isCarrying;
 	private float health;
+	private bool swing;
 
 	private int floorMask;
 	private float camRayLength = 100f;
@@ -45,14 +46,19 @@ public class Player : MonoBehaviour {
 	void FixedUpdate() {
 		float horizontal = Input.GetAxisRaw ("Horizontal");
 		float vertical = Input.GetAxisRaw ("Vertical");
+		swing = Input.GetKeyDown (KeyCode.R);
 
 		Move (horizontal, vertical);
 		Turn ();
-		Animate (horizontal, vertical);
+		Animate (horizontal, vertical, swing);
+		if (selectedObject != null) {
+			Debug.Log (selectedObject.tag);
+		}
 
 		if (isObjectSelected && !isCarrying && Input.GetKeyDown(KeyCode.E)) {
 			if (pickupTimer <= 0f) {
-				PickUp ();
+				selectedObject.GetComponent<InteractableObject> ().Interact (holdPosition);
+				isCarrying = true;
 				pickupTimer = startPickUpTimer;
 			}
 		} else if (isCarrying && Input.GetKeyDown(KeyCode.E)) {
@@ -62,10 +68,15 @@ public class Player : MonoBehaviour {
 			}
 		}
 
+		if (swing && selectedObject != null && selectedObject.CompareTag("Turret")) {
+			selectedObject.GetComponent<Turret> ().Heal (10f);
+		}
+
 		if (Input.GetKeyDown(KeyCode.F) & buildTimer <= 0f) {
 			Build ();
 			buildTimer = startBuildTimer;
 		}
+			
 
 
 		buildTimer -= Time.deltaTime;
@@ -97,22 +108,24 @@ public class Player : MonoBehaviour {
 		selectedObject.transform.SetPositionAndRotation (holdPosition.position, holdPosition.rotation);
 		selectedObject.transform.SetParent (holdPosition);
 		isCarrying = true;
-		Debug.Log ("PickedUp");
 	}
 
 	void Drop() {
-		Debug.Log ("Dropped");
 		holdPosition.DetachChildren ();
 		isCarrying = false;
 	}
 
-	void Animate(float h, float v) {
+	void Animate(float h, float v, bool swing) {
 		bool running = h != 0f || v != 0f;
 		anim.SetBool ("IsRunning", running);
+		if (swing) {
+			anim.SetTrigger ("Swing");
+		}
+
 	}
 
 	void Build() {
-		Instantiate (building, holdPosition.position, holdPosition.rotation);
+		GameManager.instance.Build();
 		return;
 	}
 
@@ -128,7 +141,30 @@ public class Player : MonoBehaviour {
 
 	public void Damage(float damage) {
 		health -= damage;
-		healthBar.fillAmount = health / startHealth;
+        //healthBar.fillAmount = health / startHealth;
+        healthBar.rectTransform.localScale = new Vector3(1, health / startHealth, 1);
+	}
+
+	void OnTriggerEnter(Collider col) {
+		GameObject go = col.gameObject;
+
+		if (go.CompareTag ("Turret")) {
+			go.GetComponent<InteractableObject> ().Selected (transform);
+		}
+		if (go.CompareTag("Battery")) {
+			go.GetComponent<InteractableObject> ().Selected (transform);
+		}
+	}
+
+	void OnTriggerExit(Collider col) {
+		GameObject go = col.gameObject;
+
+		if (go.CompareTag("Turret")) {
+			go.GetComponent<InteractableObject> ().DeSelected (transform);
+		}
+		if (go.CompareTag("Battery")) {
+			go.GetComponent<InteractableObject> ().DeSelected (transform);
+		}
 	}
 
 }
