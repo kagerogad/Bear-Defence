@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour {
 	public float timeBetweenRounds = 30f;
 	public float timeBetweenSpawns = 3f;
 
-	public float timeBuildPhase = 30f;
+	public float timeBuildPhase = 5f;
 	private float timeBuildPhase_;
 
 
@@ -63,18 +63,21 @@ public class GameManager : MonoBehaviour {
 	void Update() {
 		if (roundStarted) {
 			timer -= Time.deltaTime;
-			if (timer <= 0f) {
+			if (timer <= 0f && enemyCurrentCurrency > 0f) {
 				SpawnEnemy (enemyArray.enemies[0]);
 				Debug.Log (enemyCurrentCurrency);
 				timer = timeBetweenSpawns;
 			}
 			if (enemyCurrentCurrency <= 0f) {
-				roundStarted = false;
-				startRoundButton.SetActive (true);
+				if (CheckIfNoEnemiesAlive()) {
+					roundStarted = false;
+					startRoundButton.SetActive (true);
+				}
 			}
 		}
 
 		if (!roundStarted) {
+			tiles.SetActive (true);
 			timeBuildPhase_ -= Time.deltaTime;
 			roundCounter.text = timeBuildPhase_.ToString ();
 
@@ -91,7 +94,10 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-
+	bool CheckIfNoEnemiesAlive() {
+		GameObject[] enems = GameObject.FindGameObjectsWithTag ("Enemy");
+		return enems.Length <= 0f;
+	}
 	void SpawnEnemy(GameObject enemy) {
 		int randomIndex = rand.Next (0, enemySpawners.Length);
 		float cost = enemy.GetComponent<Enemy> ().cost;
@@ -104,6 +110,7 @@ public class GameManager : MonoBehaviour {
 
 
 	public void StartRound() {
+		tiles.SetActive (false);
 		enemyStartCurrency = enemyStartCurrency * enemyCurrencyMultiplier;
 		enemyCurrentCurrency = enemyStartCurrency;
 		roundNumber = roundNumber + 1;

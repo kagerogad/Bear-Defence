@@ -10,6 +10,8 @@ public class WorldController : MonoBehaviour {
 	public int height = 25;
 
 	public Sprite floorSprite;
+	public Sprite selectedSprite;
+
 	GameObject tiles;
 
 	void Start() {
@@ -24,6 +26,9 @@ public class WorldController : MonoBehaviour {
 
 				SpriteRenderer spr = tileGameObject.AddComponent<SpriteRenderer> ();
 
+				TileSelectController ts = tileGameObject.AddComponent<TileSelectController> ();
+
+				ts.selectedSprite = selectedSprite;
 
 				Tile tileData = world.GetTileAt (x, y);
 				tileGameObject.transform.position = new Vector3 (tileData.GetX(), -.45f, tileData.GetY());
