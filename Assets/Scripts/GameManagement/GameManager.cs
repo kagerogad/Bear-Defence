@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour {
 
 	[Header("Game Settings")]
 	public float enemyStartCurrency = 100f;
-	public static float playerCurrency = 100f;
+	public float playerCurrency = 100f;
 	public float enemyCurrencyMultiplier = 1.5f;
 	public float timeBetweenRounds = 30f;
 	public float timeBetweenSpawns = 3f;

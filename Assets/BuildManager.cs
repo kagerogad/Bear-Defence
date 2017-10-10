@@ -27,7 +27,14 @@ public class BuildManager : MonoBehaviour {
 	}
 
 	void Build() {
-		Instantiate (building, tile.position + offset, Quaternion.identity);
+
+		float cost = building.GetComponent<PlaceableObject> ().cost;
+		float currency = GameManager.instance.playerCurrency;
+
+		if (currency - cost >= 0f) {
+			GameManager.instance.playerCurrency = currency - cost;
+			Instantiate (building, tile.position + offset, Quaternion.identity);
+		}
 	}
 
 	public void SetTile(Transform t) {

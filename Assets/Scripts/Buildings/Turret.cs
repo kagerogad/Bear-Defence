@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Rigidbody))]
 public class Turret : PlaceableObject, IsDamageable {
 
 	[Header("Turret Attributes")]
