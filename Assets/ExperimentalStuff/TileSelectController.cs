@@ -16,10 +16,12 @@ public class TileSelectController : MonoBehaviour {
 
 	void OnMouseEnter() {
 		sr.sprite = selectedSprite;
+		BuildManager.instance.SetTile (transform);
 	}
 
 	void OnMouseExit() {
 		sr.sprite = regularSprite;
+		BuildManager.instance.SetTile (null);
 	}
 		
 }

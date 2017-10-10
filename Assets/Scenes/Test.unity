@@ -290,6 +290,23 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1912868680}
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!1 &513082883 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1710326008497936, guid: 425412b6228484cb7aec286b144eab28,
+    type: 2}
+  m_PrefabInternal: {fileID: 1433540167}
+--- !u!114 &513082887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 513082883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a91c2d68b3624f55a9886d6465d118f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  building: {fileID: 1285507479562686, guid: ae60d564574944cc2882defd97d2942f, type: 2}
 --- !u!114 &566050078 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114023360969856538, guid: 62e4d349e920c4cb995bf8974a04b565,
@@ -537,6 +554,11 @@ Prefab:
       propertyPath: m_Volume
       value: 0.29
       objectReference: {fileID: 0}
+    - target: {fileID: 114930224288194412, guid: 425412b6228484cb7aec286b144eab28,
+        type: 2}
+      propertyPath: timeBuildPhase
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 425412b6228484cb7aec286b144eab28, type: 2}
   m_IsPrefabParent: 0
@@ -631,6 +653,7 @@ MonoBehaviour:
   width: 25
   height: 25
   floorSprite: {fileID: 21300000, guid: a45f4f472914045e38e4304466ba04b4, type: 3}
+  selectedSprite: {fileID: 21300000, guid: c767b1c1cab394e17a6cf9c18f8c186b, type: 3}
 --- !u!1001 &1912868680
 Prefab:
   m_ObjectHideFlags: 0
