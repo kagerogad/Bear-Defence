@@ -157,6 +157,9 @@ public class Player : MonoBehaviour {
 
 	public void Damage(float damage) {
 		health -= damage;
+		if (health <= 0f) {
+			GameManager.instance.SetIsDead (true);
+		}
         //healthBar.fillAmount = health / startHealth;
         healthBar.rectTransform.localScale = new Vector3(1, health / startHealth, 1);
 	}

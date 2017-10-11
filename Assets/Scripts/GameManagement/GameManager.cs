@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour {
 	public float timeBetweenRounds = 30f;
 	public float timeBetweenSpawns = 3f;
 
+	private bool isDead;
+
 	public float timeBuildPhase = 5f;
 	private float timeBuildPhase_;
 
@@ -28,6 +30,7 @@ public class GameManager : MonoBehaviour {
 	public Text roundCounter;
 	public Text playerCurrencyText;
 	public GameObject selectionMenu;
+	public GameObject gameOverPanel;
 
 	private float enemyCurrentCurrency;
 	private int roundNumber = 0;
@@ -87,6 +90,10 @@ public class GameManager : MonoBehaviour {
 			}
 		}
 
+		if (isDead) {
+			gameOverPanel.SetActive (true);
+		}
+
 		UpdateCurrency ();
 
 		if (Input.GetKeyDown(KeyCode.Tab)) {
@@ -107,7 +114,9 @@ public class GameManager : MonoBehaviour {
 		return;
 	}
 
-
+	public void SetIsDead(bool isDead) {
+		this.isDead = isDead;
+	}
 
 	public void StartRound() {
 		tiles.SetActive (false);

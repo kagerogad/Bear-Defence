@@ -40,5 +40,5 @@ public class BuildManager : MonoBehaviour {
 	public void SetTile(Transform t) {
 		tile = t;
 	}
-
+		
 }
