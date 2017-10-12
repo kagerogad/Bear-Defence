@@ -20,7 +20,6 @@ public class Turret : PlaceableObject, IsDamageable {
 	[Header("Turret References")]
 	public Transform partToRotate;
 	public Transform firingPoint;
-	public GameObject projectile;
 	public Image durabilityBar;
 	public GameObject wire;
 
@@ -85,13 +84,18 @@ public class Turret : PlaceableObject, IsDamageable {
 	}
 
 	void Fire() {
-		GameObject proj = (GameObject)Instantiate (projectile, firingPoint.position, firingPoint.rotation);
-		proj.GetComponent<Projectile> ().SetTarget (target);
+        GameObject newBullet = ObjectPoolScript.instance.GetPoolObject();
+        if(newBullet == null)
+        {
+            return;
+        }
+        newBullet.transform.position = transform.position;
+        newBullet.transform.rotation = transform.rotation;
+        newBullet.SetActive(true);
+		newBullet.GetComponent<Projectile> ().SetTarget (target);
 		durability -= durabilityLossPerShot;
 		durabilityBar.fillAmount = durability / startDurability;
 	}
-
-
 
 
 	public void TakeDamage(float damageTaken) {
