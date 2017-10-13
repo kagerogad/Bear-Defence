@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour {
 	public Text playerCurrencyText;
 	public GameObject selectionMenu;
 	public GameObject gameOverPanel;
+	public Text gameOverRoundText;
 
 	private float enemyCurrentCurrency;
 	private int roundNumber = 0;
@@ -92,6 +93,7 @@ public class GameManager : MonoBehaviour {
 
 		if (isDead) {
 			gameOverPanel.SetActive (true);
+			gameOverRoundText.text = "You made to " + roundCounter.text;
 		}
 
 		UpdateCurrency ();

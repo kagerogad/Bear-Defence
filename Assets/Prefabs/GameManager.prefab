@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyStartCurrency: 300
+  playerCurrency: 100
   enemyCurrencyMultiplier: 1.5
   timeBetweenRounds: 1
   timeBetweenSpawns: 3
@@ -169,6 +170,7 @@ MonoBehaviour:
   roundCounter: {fileID: 0}
   playerCurrencyText: {fileID: 0}
   selectionMenu: {fileID: 0}
+  gameOverPanel: {fileID: 0}
   tiles: {fileID: 0}
 --- !u!114 &114980935023135712
 MonoBehaviour:

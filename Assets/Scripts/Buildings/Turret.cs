@@ -31,7 +31,7 @@ public class Turret : PlaceableObject, IsDamageable {
 		rateOfFire_ = rateOfFire;
 		durability = startDurability;
 		InvokeRepeating ("UpdateTarget", 0f, 0.5f);
-		InvokeRepeating ("UpdateBattery", 0f, 0.5f);
+		InvokeRepeating ("UpdateBattery", 0f, 0.3f);
 	}
 
 	void Update() {
@@ -87,7 +87,12 @@ public class Turret : PlaceableObject, IsDamageable {
 		}
 
 		if (nearestBattery != null && shortestDistance <= batteryRange) {
-			isOn = true;
+			if (nearestBattery.GetComponent<Battery> ().currentCharge >= 5f) {
+				isOn = true;
+				nearestBattery.GetComponent<Battery> ().Discharge (5f);
+			} else {
+				isOn = false;
+			}
 		} else {
 			isOn = false;
 		}
