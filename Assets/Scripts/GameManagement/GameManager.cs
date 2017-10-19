@@ -94,6 +94,7 @@ public class GameManager : MonoBehaviour {
 		if (isDead) {
 			gameOverPanel.SetActive (true);
 			gameOverRoundText.text = "You made to " + roundCounter.text;
+			PlayerPrefs.SetInt ("RoundNumber", roundNumber);
 		}
 
 		UpdateCurrency ();

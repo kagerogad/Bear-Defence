@@ -8,3 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Test.unity
     guid: a67494df981f14410b2ddf9ede6e0495
+  - enabled: 1
+    path: Assets/Scenes/DummyStartScene.unity
+    guid: ddb239e951e5642669cbb9897403d956
