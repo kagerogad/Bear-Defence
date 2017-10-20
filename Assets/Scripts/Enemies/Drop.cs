@@ -27,8 +27,8 @@ public class Drop : MonoBehaviour {
 		GameObject go = col.gameObject;
 
 		if (go.CompareTag("Player")) {
-			float playerCurrency = GameManager.playerCurrency;
-			GameManager.playerCurrency = playerCurrency + scrapAmount;
+			float playerCurrency = GameManager.instance.playerCurrency;
+			GameManager.instance.playerCurrency = playerCurrency + scrapAmount;
 			Destroy (gameObject);
 		}
 	}

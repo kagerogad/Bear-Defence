@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour, IsDamageable {
 	public float startHealth;
 	public float cost;
 	public int chanceOfDrop;
+	public float attackRange;
 
 	[Header("References")]
 	public Image healthBar;
@@ -31,6 +32,7 @@ public class Enemy : MonoBehaviour, IsDamageable {
 		nav = GetComponent<NavMeshAgent> ();
 
 		health = startHealth;
+		InvokeRepeating ("Attack", 0.0f, .5f);
 	}
 
 	// Update is called once per frame
@@ -42,6 +44,11 @@ public class Enemy : MonoBehaviour, IsDamageable {
 		}
 	}
 
+	void Attack() {
+		if (Vector3.Distance(player.position, transform.position) <= attackRange) {
+			player.GetComponent<Player> ().Damage (damage);
+		}
+	}
 	void Move() {
 		if (!isTouchingPlayer) {
 			nav.SetDestination (player.position);
@@ -50,7 +57,7 @@ public class Enemy : MonoBehaviour, IsDamageable {
 		nav.speed = speed;
 	}
 
-	void OnTriggerEnter(Collider col) {
+	/*void OnTriggerEnter(Collider col) {
 		GameObject go = col.gameObject;
 
 		if (go.CompareTag("Player")) {
@@ -65,7 +72,7 @@ public class Enemy : MonoBehaviour, IsDamageable {
 		if (go.CompareTag("Player")) {
 			isTouchingPlayer = false;
 		}
-	}
+	}*/
 
 	public void TakeDamage(float damageTaken) {
 		health -= damageTaken;
