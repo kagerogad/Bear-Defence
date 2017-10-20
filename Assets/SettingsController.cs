@@ -9,6 +9,7 @@ public class SettingsController : MonoBehaviour {
 
 	void Awake() {
 		SetVolume ();
+		PlayerPrefs.SetInt ("RoundNumber", 0);
 	}
 
 	public void SetVolume() {
