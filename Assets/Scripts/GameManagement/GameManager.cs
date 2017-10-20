@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour {
 	public GameObject gameOverPanel;
 	public Text gameOverRoundText;
 
+	private AudioSource gameMusic;
+
 	private float enemyCurrentCurrency;
 	private int roundNumber = 0;
 
@@ -54,6 +56,8 @@ public class GameManager : MonoBehaviour {
 			Destroy (gameObject);
 		}
 
+		gameMusic = GetComponent<AudioSource> ();
+		gameMusic.volume = PlayerPrefs.GetFloat("MusicVolume");
 		enemyCurrentCurrency = enemyStartCurrency;
 		selectedBuilding = buildings.buildingsArray [0];
 		timeBuildPhase_ = timeBuildPhase;
