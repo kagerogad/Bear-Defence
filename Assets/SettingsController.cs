@@ -9,7 +9,7 @@ public class SettingsController : MonoBehaviour {
 
 	void Awake() {
 		SetVolume ();
-		PlayerPrefs.SetInt ("RoundNumber", 0);
+		Time.timeScale = 1;
 	}
 
 	public void SetVolume() {

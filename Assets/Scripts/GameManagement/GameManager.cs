@@ -99,6 +99,7 @@ public class GameManager : MonoBehaviour {
 			gameOverPanel.SetActive (true);
 			gameOverRoundText.text = "You made to " + roundCounter.text;
 			PlayerPrefs.SetInt ("RoundNumber", roundNumber);
+			Time.timeScale = 0;
 		}
 
 		UpdateCurrency ();

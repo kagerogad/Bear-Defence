@@ -26,7 +26,6 @@ public class Turret : PlaceableObject, IsDamageable {
 	private bool isOn;
 	private float durability;
 
-
 	void Start() {
 		rateOfFire_ = rateOfFire;
 		durability = startDurability;
