@@ -8,13 +8,21 @@ public class Projectile : MonoBehaviour {
 
 	public float Speed;
 	public float damage;
-	public float timeTillDeath = 3f;
-
-
+	public float lifeTime = 3f;
 
 	protected Vector3 dir;
 
-	public void SetTarget(Transform target) {
+    private void OnEnable()
+    {
+        Invoke("RemoveObject", lifeTime);
+    }
+
+    private void OnDisable()
+    {
+        CancelInvoke();
+    }
+
+    public void SetTarget(Transform target) {
 		this.target = target;
 		dir = target.position - transform.position;
 		dir.y = 0f;
@@ -28,28 +36,24 @@ public class Projectile : MonoBehaviour {
 
 	void Update() {
 		if (target == null) {
-			Destroy (gameObject);
+			RemoveObject ();
 			return;
 		}
 
-		timeTillDeath -= Time.deltaTime;
-
-
-		if (timeTillDeath <= 0f) {
-			Destroy (gameObject);
-		}
-
 		Travel ();
-
-
 	}
 
-	void OnTriggerEnter(Collider col) {
+    private void RemoveObject()
+    {
+        gameObject.SetActive(false);
+    }
+
+    void OnTriggerEnter(Collider col) {
 		GameObject go = col.gameObject;
 
 		if (go.CompareTag("Enemy")) {
 			go.GetComponent<Enemy> ().TakeDamage (damage);
-			Destroy (gameObject);
+			RemoveObject();
 		}
 	}
 		
