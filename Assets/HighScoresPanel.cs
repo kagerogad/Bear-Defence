@@ -117,35 +117,35 @@ public class HighScoresPanel : MonoBehaviour {
 			firstPlace.enabled = true;
 			firstPlace.text = names[0];
 		} else {
-			//firstPlace.enabled = false;
+			firstPlace.enabled = false;
 		}
 			
 		if (roundNumbers [1] > 0) {
 			secondPlace.enabled = true;
 			secondPlace.text = names[1];
 		} else {
-			//secondPlace.enabled = false;
+			secondPlace.enabled = false;
 		}
 			
 		if (roundNumbers [2] > 0) {
 			thirdPlace.enabled = true;
 			thirdPlace.text = names[2];
 		} else {
-			//thirdPlace.enabled = false;
+			thirdPlace.enabled = false;
 		}
 			
 		if (roundNumbers [3] > 0) {
 			fourthPlace.enabled = true;
 			fourthPlace.text = names[3];
 		} else {
-			//fourthPlace.enabled = false;
+			fourthPlace.enabled = false;
 		}
 			
 		if (roundNumbers [4] > 0) {
 			fifthPlace.enabled = true;
 			fifthPlace.text = names[4];
 		} else {
-			//fifthPlace.enabled = false;
+			fifthPlace.enabled = false;
 		}
 	}
 
