@@ -13,6 +13,8 @@ public class Turret : PlaceableObject, IsDamageable {
 	public float rateOfFire = 1f;
 	public float startDurability = 100f;
 	public float durabilityLossPerShot = 10f;
+	public bool useLazer = false;
+	public LineRenderer lineRenderer;
 
 	private float rateOfFire_;
 
@@ -35,19 +37,43 @@ public class Turret : PlaceableObject, IsDamageable {
 
 	void Update() {
 		if (target == null) {
+			if (useLazer) {
+				if (lineRenderer.enabled) {
+					lineRenderer.enabled = false;
+				}
+			}
 			return;
+		}
+
+		if (!isOn) {
+			if (lineRenderer.enabled) {
+				lineRenderer.enabled = false;
+			}	
 		}
 
 		rateOfFire_ -= Time.deltaTime;
 
 		if (isOn && durability > 0f) {
 			Aim (target);
-			if (rateOfFire_ <= 0f) {
-				Fire ();
-				rateOfFire_ = rateOfFire;
+			if (useLazer) {
+				Lazer ();
+			} else {
+				if (rateOfFire_ <= 0f) {
+					Fire ();
+					rateOfFire_ = rateOfFire;
+				}
 			}
-		}
 
+		}
+	}
+
+	void Lazer() {
+		if (!lineRenderer.enabled && isOn) {
+			lineRenderer.enabled = true;
+		}
+		lineRenderer.SetPosition (0, firingPoint.position);
+		lineRenderer.SetPosition (1, target.position);
+		target.GetComponent<Enemy> ().TakeDamage (.5f);
 	}
 
 	public void UpdateTarget() {
