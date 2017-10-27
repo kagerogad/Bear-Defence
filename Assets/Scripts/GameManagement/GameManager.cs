@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject selectionMenu;
 	public GameObject gameOverPanel;
 	public Text gameOverRoundText;
+	public GameObject turretPanel;
 
 	private AudioSource gameMusic;
 
@@ -70,6 +71,7 @@ public class GameManager : MonoBehaviour {
 
 	void Update() {
 		if (roundStarted) {
+			turretPanel.SetActive (false);
 			timer -= Time.deltaTime;
 			if (timer <= 0f && enemyCurrentCurrency > 0f) {
 				SpawnEnemy (enemyArray.enemies[0]);
@@ -86,6 +88,7 @@ public class GameManager : MonoBehaviour {
 
 		if (!roundStarted) {
 			tiles.SetActive (true);
+			turretPanel.SetActive (true);
 			timeBuildPhase_ -= Time.deltaTime;
 			roundCounter.text = timeBuildPhase_.ToString ();
 

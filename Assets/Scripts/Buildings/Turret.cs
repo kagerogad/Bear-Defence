@@ -73,7 +73,7 @@ public class Turret : PlaceableObject, IsDamageable {
 		}
 		lineRenderer.SetPosition (0, firingPoint.position);
 		lineRenderer.SetPosition (1, target.position);
-		target.GetComponent<Enemy> ().TakeDamage (.5f);
+		target.GetComponent<Enemy> ().TakeDamage (1f);
 	}
 
 	public void UpdateTarget() {
