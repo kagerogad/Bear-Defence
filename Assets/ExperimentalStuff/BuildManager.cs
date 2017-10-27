@@ -5,6 +5,9 @@ using UnityEngine;
 public class BuildManager : MonoBehaviour {
 
 	public GameObject building;
+	public GameObject Lazer;
+
+	private GameObject thingThatsBuilt;
 	public Vector3 offset;
 
 	public static BuildManager instance = null;
@@ -17,10 +20,17 @@ public class BuildManager : MonoBehaviour {
 		} else if (instance != this) {
 			Destroy (gameObject);
 		}
-
+		thingThatsBuilt = building;
 	}
 
 	void Update() {
+
+		if (Input.GetKeyDown(KeyCode.Alpha1)) {
+			thingThatsBuilt = building;
+		} else if (Input.GetKeyDown(KeyCode.Alpha2)) {
+			thingThatsBuilt = Lazer;
+		}
+
 		if (Input.GetKeyDown(KeyCode.Mouse0)) {
 			Build ();
 		}
@@ -28,12 +38,12 @@ public class BuildManager : MonoBehaviour {
 
 	void Build() {
 
-		float cost = building.GetComponent<PlaceableObject> ().cost;
+		float cost = thingThatsBuilt.GetComponent<PlaceableObject> ().cost;
 		float currency = GameManager.instance.playerCurrency;
 
 		if (currency - cost >= 0f) {
 			GameManager.instance.playerCurrency = currency - cost;
-			Instantiate (building, tile.position + offset, Quaternion.identity);
+			Instantiate (thingThatsBuilt, tile.position + offset, Quaternion.identity);
 		}
 	}
 
