@@ -87,19 +87,28 @@ public class HighScoresPanel : MonoBehaviour {
 			}
 		}
 		if (wasPlaceChanged) {
-			int placeHolderInt = 0;
-			string placeHolderString = "";
 			for (int i = 4; i >= place; i--) {
 				if (i == place) {
 					roundNumbers [i] = newestRoundNumber;
 					names [i] = newestName;
-					Debug.Log ("roundNumbers is changed");
 				} else {
 					roundNumbers [i] = roundNumbers [i - 1];
 					names [i] = names [i - 1];
 				}
 			}
 		}
+
+		PlayerPrefs.SetString ("firstPlaceName", names[0]);
+		PlayerPrefs.SetString ("secondPlaceName", names[1]);
+		PlayerPrefs.SetString ("thirdPlaceName", names[2]);
+		PlayerPrefs.SetString ("fourthPlaceName", names[3]);
+		PlayerPrefs.SetString ("fifthPlaceName", names[4]);
+
+		PlayerPrefs.SetInt("firstPlaceRoundNumber", roundNumbers[0]);
+		PlayerPrefs.SetInt ("secondPlaceRoundNumber", roundNumbers[1]);
+		PlayerPrefs.SetInt ("thirdPlaceRoundNumber", roundNumbers[2]);
+		PlayerPrefs.SetInt ("fourthPlaceRoundNumber", roundNumbers[3]);
+		PlayerPrefs.SetInt ("fifthPlaceRoundNumber", roundNumbers[4]);
 	}
 
 	public void DisplayHighScores() {
@@ -108,35 +117,35 @@ public class HighScoresPanel : MonoBehaviour {
 			firstPlace.enabled = true;
 			firstPlace.text = names[0];
 		} else {
-			firstPlace.enabled = false;
+			//firstPlace.enabled = false;
 		}
-
+			
 		if (roundNumbers [1] > 0) {
 			secondPlace.enabled = true;
 			secondPlace.text = names[1];
 		} else {
-			secondPlace.enabled = false;
+			//secondPlace.enabled = false;
 		}
-
+			
 		if (roundNumbers [2] > 0) {
 			thirdPlace.enabled = true;
 			thirdPlace.text = names[2];
 		} else {
-			thirdPlace.enabled = false;
+			//thirdPlace.enabled = false;
 		}
-
+			
 		if (roundNumbers [3] > 0) {
 			fourthPlace.enabled = true;
 			fourthPlace.text = names[3];
 		} else {
-			fourthPlace.enabled = false;
+			//fourthPlace.enabled = false;
 		}
-
+			
 		if (roundNumbers [4] > 0) {
 			fifthPlace.enabled = true;
 			fifthPlace.text = names[4];
 		} else {
-			fifthPlace.enabled = false;
+			//fifthPlace.enabled = false;
 		}
 	}
 
