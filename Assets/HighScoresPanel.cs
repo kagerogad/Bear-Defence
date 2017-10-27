@@ -38,6 +38,8 @@ public class HighScoresPanel : MonoBehaviour {
 		thirdPlaceRoundNumber = PlayerPrefs.GetInt ("thirdPlaceRoundNumber", 0);
 		fourthPlaceRoundNumber = PlayerPrefs.GetInt ("fourthPlaceRoundNumber", 0);
 		fifthPlaceRoundNumber = PlayerPrefs.GetInt ("fifthPlaceRoundNumber", 0);
+
+		Debug.Log (firstPlaceName);
 	}
 
 	public void DisplayHighScores() {
