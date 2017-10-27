@@ -9,7 +9,7 @@ public class Battery : InteractableObject {
 	public float capacity;
 	public Image chargeBar;
 
-	float currentCharge;
+	public float currentCharge;
 
 	/*Renderer rend;
 	Color startColor;*/
@@ -40,7 +40,9 @@ public class Battery : InteractableObject {
 				currentCharge = capacity;
 			}
 		}
-		int curretChargeInt = (int)currentCharge;
+		float percentCharged = (currentCharge / capacity) * 100;
+		Debug.Log ("Battery Charge");
+		int curretChargeInt = (int)percentCharged;
 		gameObject.GetComponent<BatteryVisuals>().setCharge(curretChargeInt);
 		chargeBar.fillAmount = currentCharge / capacity;
 	}
