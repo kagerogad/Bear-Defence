@@ -33,12 +33,12 @@ public class HighScoresPanel : MonoBehaviour {
 	private string fifthPlaceName;
 
 	void Awake() {
-		PlayerPrefs.SetInt ("firstPlaceRoundNumber", 0);
+		/*PlayerPrefs.SetInt ("firstPlaceRoundNumber", 0);
 		PlayerPrefs.SetInt ("secondPlaceRoundNumber", 0);
 		PlayerPrefs.SetInt ("thirdPlaceRoundNumber", 0);
 		PlayerPrefs.SetInt ("fourthPlaceRoundNumber", 0);
 		PlayerPrefs.SetInt ("fifthPlaceRoundNumber", 0);
-		PlayerPrefs.SetInt ("newestRoundNumber", 0);
+		PlayerPrefs.SetInt ("newestRoundNumber", 0);*/
 
 		Debug.Log (" MainMenu boi!! " + PlayerPrefs.GetString ("newestName") + " newestroundNumber: " + PlayerPrefs.GetInt("newestRoundNumber"));
 		roundNumbers = new int[5];
