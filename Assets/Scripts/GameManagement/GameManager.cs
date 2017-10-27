@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour {
 	private AudioSource gameMusic;
 
 	private float enemyCurrentCurrency;
-	private int roundNumber = 0;
+	public int roundNumber = 0;
 
 	private GameObject selectedBuilding;
 

@@ -908,7 +908,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d16d5b20e4b1a4198ad625cfef9bcdb2, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.1
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1317,6 +1317,56 @@ MonoBehaviour:
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
+--- !u!1 &999157779
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 999157781}
+  - component: {fileID: 999157780}
+  m_Layer: 5
+  m_Name: MenuController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &999157780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 999157779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b882bd2da3d06475c82e2e98a92286fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstPlace: {fileID: 1721406367}
+  secondPlace: {fileID: 1750788776}
+  thirdPlace: {fileID: 1904752477}
+  fourthPlace: {fileID: 1817703500}
+  fifthPlace: {fileID: 1503324812}
+--- !u!224 &999157781
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 999157779}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 519.5, y: -442.5625}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1143612991
 GameObject:
   m_ObjectHideFlags: 0
@@ -1866,8 +1916,6 @@ GameObject:
   - component: {fileID: 1491514621}
   - component: {fileID: 1491514624}
   - component: {fileID: 1491514623}
-  - component: {fileID: 1491514625}
-  - component: {fileID: 1491514626}
   - component: {fileID: 1491514627}
   m_Layer: 5
   m_Name: HighScoresPanel
@@ -1962,33 +2010,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &1491514625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1491514619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 998538e64f2004c76b4c2624afe3b176, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1491514626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1491514619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b882bd2da3d06475c82e2e98a92286fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firstPlace: {fileID: 0}
-  secondPlace: {fileID: 0}
-  thirdPlace: {fileID: 0}
-  fourthPlace: {fileID: 0}
-  fifthPlace: {fileID: 0}
 --- !u!114 &1491514627
 MonoBehaviour:
   m_ObjectHideFlags: 0

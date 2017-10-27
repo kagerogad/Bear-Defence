@@ -646,6 +646,7 @@ GameObject:
   - component: {fileID: 649151932}
   - component: {fileID: 649151931}
   - component: {fileID: 649151930}
+  - component: {fileID: 649151933}
   m_Layer: 5
   m_Name: InitialInput
   m_TagString: Untagged
@@ -721,7 +722,18 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 649151933}
+        m_MethodName: UpdateName
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.InputField+SubmitEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_OnValueChanged:
@@ -769,6 +781,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 649151928}
+--- !u!114 &649151933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 649151928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b65eceb88413343f68a01d9dd27e182b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tex: {fileID: 1801389865}
 --- !u!1 &649593247 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1543025960450880, guid: ee8bc8a13c1db46549d647c00a1d4603,
@@ -1626,6 +1650,23 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee8bc8a13c1db46549d647c00a1d4603, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1652287090 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1710326008497936, guid: 425412b6228484cb7aec286b144eab28,
+    type: 2}
+  m_PrefabInternal: {fileID: 1433540167}
+--- !u!114 &1652287091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1652287090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b65eceb88413343f68a01d9dd27e182b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tex: {fileID: 0}
 --- !u!1001 &1716293048
 Prefab:
   m_ObjectHideFlags: 0
