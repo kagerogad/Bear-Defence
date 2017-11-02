@@ -6,6 +6,7 @@ public class TileSelectController : MonoBehaviour {
 
 	private Sprite regularSprite;
 	public Sprite selectedSprite;
+	public bool isHighlighted;
 
 	private SpriteRenderer sr;
 

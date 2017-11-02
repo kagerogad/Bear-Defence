@@ -47,7 +47,9 @@ public class BuildManager : MonoBehaviour {
 		}
 
 		if (Input.GetKeyDown(KeyCode.Mouse0)) {
-			Build ();
+			if (tile.GetComponent<TileSelectController>().isHighlighted) {
+				Build ();
+			}
 		}
 	}
 
