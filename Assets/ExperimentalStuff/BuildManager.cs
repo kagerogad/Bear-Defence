@@ -49,7 +49,7 @@ public class BuildManager : MonoBehaviour {
 		}
 
 		if (Input.GetKeyDown(KeyCode.Mouse0)) {
-			if (tile.GetComponent<TileSelectController>().isHighlighted && !isPaused) {
+			if (tile.GetComponent<TileSelectController>().isHighlighted && !isPaused && !tile.GetComponent<TileSelectController>().hasBuilding) {
 				Build ();
 			}
 		}
@@ -63,6 +63,7 @@ public class BuildManager : MonoBehaviour {
 		if (currency - cost >= 0f) {
 			GameManager.instance.playerCurrency = currency - cost;
 			Instantiate (thingThatsBuilt, tile.position + offset, Quaternion.identity);
+			tile.GetComponent<TileSelectController> ().hasBuilding = true;
 		}
 	}
 
