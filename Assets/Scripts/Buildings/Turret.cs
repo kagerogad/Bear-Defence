@@ -13,6 +13,8 @@ public class Turret : PlaceableObject, IsDamageable {
 	public float rateOfFire = 1f;
 	public float startDurability = 100f;
 	public float durabilityLossPerShot = 10f;
+	public bool useLazer = false;
+	public LineRenderer lineRenderer;
 
 	private float rateOfFire_;
 
@@ -26,7 +28,6 @@ public class Turret : PlaceableObject, IsDamageable {
 	private bool isOn;
 	private float durability;
 
-
 	void Start() {
 		rateOfFire_ = rateOfFire;
 		durability = startDurability;
@@ -36,19 +37,43 @@ public class Turret : PlaceableObject, IsDamageable {
 
 	void Update() {
 		if (target == null) {
+			if (useLazer) {
+				if (lineRenderer.enabled) {
+					lineRenderer.enabled = false;
+				}
+			}
 			return;
+		}
+
+		if (!isOn) {
+			if (lineRenderer != null && lineRenderer.enabled) {
+				lineRenderer.enabled = false;
+			}	
 		}
 
 		rateOfFire_ -= Time.deltaTime;
 
 		if (isOn && durability > 0f) {
 			Aim (target);
-			if (rateOfFire_ <= 0f) {
-				Fire ();
-				rateOfFire_ = rateOfFire;
+			if (useLazer) {
+				Lazer ();
+			} else {
+				if (rateOfFire_ <= 0f) {
+					Fire ();
+					rateOfFire_ = rateOfFire;
+				}
 			}
-		}
 
+		}
+	}
+
+	void Lazer() {
+		if (!lineRenderer.enabled && isOn) {
+			lineRenderer.enabled = true;
+		}
+		lineRenderer.SetPosition (0, firingPoint.position);
+		lineRenderer.SetPosition (1, target.position);
+		target.GetComponent<Enemy> ().TakeDamage (1f);
 	}
 
 	public void UpdateTarget() {
@@ -106,6 +131,7 @@ public class Turret : PlaceableObject, IsDamageable {
 		Quaternion lookRotation = Quaternion.LookRotation (dir);
 
 		Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
+		Debug.Log (rotation);
 		partToRotate.rotation = Quaternion.Euler (0f, rotation.y, 0f);
 	}
 
@@ -115,8 +141,8 @@ public class Turret : PlaceableObject, IsDamageable {
         {
             return;
         }
-        newBullet.transform.position = transform.position;
-        newBullet.transform.rotation = transform.rotation;
+		newBullet.transform.position = firingPoint.position;
+		newBullet.transform.rotation = firingPoint.rotation;
         newBullet.SetActive(true);
 		newBullet.GetComponent<Projectile> ().SetTarget (target);
 		durability -= durabilityLossPerShot;

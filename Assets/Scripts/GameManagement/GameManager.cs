@@ -32,9 +32,12 @@ public class GameManager : MonoBehaviour {
 	public GameObject selectionMenu;
 	public GameObject gameOverPanel;
 	public Text gameOverRoundText;
+	public GameObject turretPanel;
+
+	private AudioSource gameMusic;
 
 	private float enemyCurrentCurrency;
-	private int roundNumber = 0;
+	public int roundNumber = 0;
 
 	private GameObject selectedBuilding;
 
@@ -53,7 +56,11 @@ public class GameManager : MonoBehaviour {
 		} else if (instance != this) {
 			Destroy (gameObject);
 		}
-
+		if (Time.timeScale == 0f) {
+			Time.timeScale = 1f;
+		}
+		gameMusic = GetComponent<AudioSource> ();
+		gameMusic.volume = PlayerPrefs.GetFloat("MusicVolume");
 		enemyCurrentCurrency = enemyStartCurrency;
 		selectedBuilding = buildings.buildingsArray [0];
 		timeBuildPhase_ = timeBuildPhase;
@@ -66,6 +73,7 @@ public class GameManager : MonoBehaviour {
 
 	void Update() {
 		if (roundStarted) {
+			turretPanel.SetActive (false);
 			timer -= Time.deltaTime;
 			if (timer <= 0f && enemyCurrentCurrency > 0f) {
 				SpawnEnemy (enemyArray.enemies[0]);
@@ -82,6 +90,7 @@ public class GameManager : MonoBehaviour {
 
 		if (!roundStarted) {
 			tiles.SetActive (true);
+			turretPanel.SetActive (true);
 			timeBuildPhase_ -= Time.deltaTime;
 			roundCounter.text = timeBuildPhase_.ToString ();
 
@@ -95,6 +104,7 @@ public class GameManager : MonoBehaviour {
 			gameOverPanel.SetActive (true);
 			gameOverRoundText.text = "You made to " + roundCounter.text;
 			PlayerPrefs.SetInt ("RoundNumber", roundNumber);
+			Time.timeScale = 0;
 		}
 
 		UpdateCurrency ();
@@ -173,6 +183,7 @@ public class GameManager : MonoBehaviour {
 	//UI
 	public void MenuSelect() {
 		isPaused = !isPaused;
+		BuildManager.instance.isPaused = isPaused;
 		selectionMenu.SetActive (isPaused);
 		if (isPaused) {
 			Time.timeScale = 0;

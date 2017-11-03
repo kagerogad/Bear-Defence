@@ -1115,7 +1115,7 @@ MonoBehaviour:
   chanceOfDrop: 75
   attackRange: 2
   healthBar: {fileID: 114090545270845456}
-  drop: {fileID: 1413361131553166, guid: c447bd14a62464d0486737d77f424b49, type: 2}
+  drop: {fileID: 1757852001638476, guid: f4e506a5a13b24c87bd0253830989b29, type: 2}
   offSet: {x: 0, y: 2, z: 0}
 --- !u!114 &114848377393772408
 MonoBehaviour:

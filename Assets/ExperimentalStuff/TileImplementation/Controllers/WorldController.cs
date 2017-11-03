@@ -43,6 +43,7 @@ public class WorldController : MonoBehaviour {
 				}
 
 				tileGameObject.transform.SetParent (tiles.transform);
+				spr.enabled = false;
 			}
 			GameManager.instance.tiles = tiles;
 			tiles.SetActive (false);
