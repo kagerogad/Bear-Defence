@@ -46,7 +46,7 @@ public class Turret : PlaceableObject, IsDamageable {
 		}
 
 		if (!isOn) {
-			if (lineRenderer.enabled) {
+			if (lineRenderer != null && lineRenderer.enabled) {
 				lineRenderer.enabled = false;
 			}	
 		}
@@ -131,6 +131,7 @@ public class Turret : PlaceableObject, IsDamageable {
 		Quaternion lookRotation = Quaternion.LookRotation (dir);
 
 		Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
+		Debug.Log (rotation);
 		partToRotate.rotation = Quaternion.Euler (0f, rotation.y, 0f);
 	}
 

@@ -12,7 +12,11 @@ public class SettingsController : MonoBehaviour {
 		Time.timeScale = 1;
 	}
 
-	public void SetVolume() {
+	public void UpdateVolume() {
 		PlayerPrefs.SetFloat ("MusicVolume", volumeSlider.value);
+	}
+
+	public void SetVolume() {
+		volumeSlider.value = PlayerPrefs.GetFloat ("MusicVolume", .5f);
 	}
 }

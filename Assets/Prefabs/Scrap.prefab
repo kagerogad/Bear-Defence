@@ -209,3 +209,4 @@ MonoBehaviour:
   yLimit: 2
   disappearTimer: 3
   scrapAmount: 25
+  effect: {fileID: 1950379272962578, guid: f09de36aaeed4408593576bea210d779, type: 2}

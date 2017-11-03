@@ -11,6 +11,12 @@ public class HighScoresPanel : MonoBehaviour {
 	public Text fourthPlace;
 	public Text fifthPlace;
 
+	public Text firstPlaceRound;
+	public Text secondPlaceRound;
+	public Text thirdPlaceRound;
+	public Text fourthPlaceRound;
+	public Text fifthPlaceRound;
+
 	private int newestRoundNumber;
 	private string newestName;
 
@@ -109,42 +115,58 @@ public class HighScoresPanel : MonoBehaviour {
 		PlayerPrefs.SetInt ("thirdPlaceRoundNumber", roundNumbers[2]);
 		PlayerPrefs.SetInt ("fourthPlaceRoundNumber", roundNumbers[3]);
 		PlayerPrefs.SetInt ("fifthPlaceRoundNumber", roundNumbers[4]);
+
 	}
 
 	public void DisplayHighScores() {
 		UpdatePlace ();
 		if (roundNumbers [0] > 0) {
 			firstPlace.enabled = true;
+			firstPlaceRound.enabled = true;
 			firstPlace.text = names[0];
+			firstPlaceRound.text = roundNumbers [0].ToString ();
 		} else {
 			firstPlace.enabled = false;
+			firstPlaceRound.enabled = false;
 		}
 			
 		if (roundNumbers [1] > 0) {
 			secondPlace.enabled = true;
+			firstPlace.enabled = true;
 			secondPlace.text = names[1];
+			secondPlaceRound.text = roundNumbers [1].ToString ();
 		} else {
+			secondPlaceRound.enabled = false;
 			secondPlace.enabled = false;
 		}
 			
 		if (roundNumbers [2] > 0) {
+			thirdPlaceRound.enabled = true;
 			thirdPlace.enabled = true;
 			thirdPlace.text = names[2];
+			thirdPlaceRound.text = roundNumbers [2].ToString ();
 		} else {
+			thirdPlaceRound.enabled = false;
 			thirdPlace.enabled = false;
 		}
 			
 		if (roundNumbers [3] > 0) {
+			fourthPlaceRound.enabled = true;
 			fourthPlace.enabled = true;
 			fourthPlace.text = names[3];
+			fourthPlaceRound.text = roundNumbers [3].ToString ();
 		} else {
+			fourthPlaceRound.enabled = false;
 			fourthPlace.enabled = false;
 		}
 			
 		if (roundNumbers [4] > 0) {
+			fifthPlaceRound.enabled = true;
 			fifthPlace.enabled = true;
 			fifthPlace.text = names[4];
+			fifthPlaceRound.text = roundNumbers [4].ToString ();
 		} else {
+			fifthPlaceRound.enabled = false;
 			fifthPlace.enabled = false;
 		}
 	}

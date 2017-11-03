@@ -107,4 +107,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 30
   damage: 50
-  timeTillDeath: 1
+  lifeTime: 3
+  effect: {fileID: 1108108117756338, guid: 397c0279caec446a784c4e55801e2cd3, type: 2}
