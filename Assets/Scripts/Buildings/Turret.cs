@@ -141,8 +141,8 @@ public class Turret : PlaceableObject, IsDamageable {
         {
             return;
         }
-        newBullet.transform.position = transform.position;
-        newBullet.transform.rotation = transform.rotation;
+		newBullet.transform.position = firingPoint.position;
+		newBullet.transform.rotation = firingPoint.rotation;
         newBullet.SetActive(true);
 		newBullet.GetComponent<Projectile> ().SetTarget (target);
 		durability -= durabilityLossPerShot;

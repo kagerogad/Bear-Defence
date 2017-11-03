@@ -7,9 +7,11 @@ public class BuildManager : MonoBehaviour {
 
 	public GameObject building;
 	public GameObject Lazer;
+	public GameObject Blaster;
 
 	public Image simpleTurret;
 	public Image LazerImage;
+	public Image BlasterImage;
 
 	public bool isPaused;
 
@@ -46,7 +48,7 @@ public class BuildManager : MonoBehaviour {
 			thingThatsBuilt = Lazer;
 			LazerImage.color = normalColor;
 			simpleTurret.color = selectedColor;
-		}
+		} 
 
 		if (Input.GetKeyDown(KeyCode.Mouse0)) {
 			if (tile.GetComponent<TileSelectController>().isHighlighted && !isPaused && !tile.GetComponent<TileSelectController>().hasBuilding) {

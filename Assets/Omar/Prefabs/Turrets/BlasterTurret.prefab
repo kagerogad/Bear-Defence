@@ -132,7 +132,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1491938125248538}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.35, z: 2.63}
+  m_LocalPosition: {x: 0, y: 0.99, z: 2.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4968566155492686}
@@ -145,7 +145,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1794993141861402}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.09567547, y: 0.02, z: 6.2670016}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224196433948659882}
@@ -237,8 +237,8 @@ MonoBehaviour:
   selectedColor: {r: 0, g: 0, b: 0, a: 0}
   cost: 20
   enemyTag: Enemy
-  range: 10
-  batteryRange: 10
+  range: 20
+  batteryRange: 15
   turnSpeed: 25
   rateOfFire: 0.6
   startDurability: 100
