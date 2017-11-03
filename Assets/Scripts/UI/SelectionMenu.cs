@@ -22,5 +22,12 @@ public class SelectionMenu : MonoBehaviour {
 		SceneManager.LoadScene (1);
 	}
 
+	public void RestartGame() {
+		if (Time.timeScale == 0f) {
+			Time.timeScale = 1f;
+		}
+		SceneManager.LoadScene (0);
+	}
+
 
 }
