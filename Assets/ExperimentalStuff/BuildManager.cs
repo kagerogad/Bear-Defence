@@ -7,9 +7,11 @@ public class BuildManager : MonoBehaviour {
 
 	public GameObject building;
 	public GameObject Lazer;
+	public GameObject Blaster;
 
 	public Image simpleTurret;
 	public Image LazerImage;
+	public Image BlasterImage;
 
 	public bool isPaused;
 
@@ -33,6 +35,7 @@ public class BuildManager : MonoBehaviour {
 		normalColor = simpleTurret.color;
 
 		LazerImage.color = selectedColor;
+		BlasterImage.color = selectedColor;
 		simpleTurret.color = normalColor;
 	}
 
@@ -42,10 +45,17 @@ public class BuildManager : MonoBehaviour {
 			thingThatsBuilt = building;
 			simpleTurret.color = normalColor;
 			LazerImage.color = selectedColor;
+			BlasterImage.color = selectedColor;
 		} else if (Input.GetKeyDown(KeyCode.Alpha2)) {
 			thingThatsBuilt = Lazer;
 			LazerImage.color = normalColor;
 			simpleTurret.color = selectedColor;
+			BlasterImage.color = selectedColor;
+		} else if (Input.GetKeyDown(KeyCode.Alpha3)) {
+			thingThatsBuilt = Blaster;
+			LazerImage.color = selectedColor;
+			simpleTurret.color = selectedColor;
+			BlasterImage.color = normalColor;
 		}
 
 		if (Input.GetKeyDown(KeyCode.Mouse0)) {
