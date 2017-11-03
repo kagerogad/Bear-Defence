@@ -56,7 +56,9 @@ public class GameManager : MonoBehaviour {
 		} else if (instance != this) {
 			Destroy (gameObject);
 		}
-
+		if (Time.timeScale == 0f) {
+			Time.timeScale = 1f;
+		}
 		gameMusic = GetComponent<AudioSource> ();
 		gameMusic.volume = PlayerPrefs.GetFloat("MusicVolume");
 		enemyCurrentCurrency = enemyStartCurrency;
@@ -181,6 +183,7 @@ public class GameManager : MonoBehaviour {
 	//UI
 	public void MenuSelect() {
 		isPaused = !isPaused;
+		BuildManager.instance.isPaused = isPaused;
 		selectionMenu.SetActive (isPaused);
 		if (isPaused) {
 			Time.timeScale = 0;
