@@ -10,7 +10,6 @@ GameObject:
   - component: {fileID: 451472}
   - component: {fileID: 3366386}
   - component: {fileID: 2332776}
-  - component: {fileID: 5448022}
   - component: {fileID: 11466172}
   - component: {fileID: 9617906}
   - component: {fileID: 8206854}
@@ -75,21 +74,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 164416}
   m_Mesh: {fileID: 4300000, guid: 04bd492e0e5d35a48a3f6c6ac3f3eba6, type: 3}
---- !u!54 &5448022
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 164416}
-  serializedVersion: 2
-  m_Mass: 500
-  m_Drag: 0.1
-  m_AngularDrag: 0.5
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 2
 --- !u!82 &8206854
 AudioSource:
   m_ObjectHideFlags: 1
@@ -324,7 +308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ad0131e1ee3f45fb96f8396a2ae0f70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 5
-  damage: 5
+  Speed: 7
+  damage: 30
   lifeTime: 3
   effect: {fileID: 1108108117756338, guid: 397c0279caec446a784c4e55801e2cd3, type: 2}
