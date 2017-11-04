@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Turret : PlaceableObject, IsDamageable {
-
+    
 	[Header("Turret Attributes")]
 	public string enemyTag;
 	public float range;
@@ -18,7 +18,7 @@ public class Turret : PlaceableObject, IsDamageable {
 
 	private float rateOfFire_;
 
-	[Header("Turret References")]
+    [Header("Turret References")]
 	public Transform partToRotate;
 	public Transform firingPoint;
 	public Image durabilityBar;
@@ -31,6 +31,7 @@ public class Turret : PlaceableObject, IsDamageable {
 	void Start() {
 		rateOfFire_ = rateOfFire;
 		durability = startDurability;
+
 		InvokeRepeating ("UpdateTarget", 0f, 0.5f);
 		InvokeRepeating ("UpdateBattery", 0f, 0.3f);
 	}
@@ -136,8 +137,21 @@ public class Turret : PlaceableObject, IsDamageable {
 	}
 
 	void Fire() {
-        GameObject newBullet = ObjectPoolScript.instance.GetPoolObject();
-        if(newBullet == null)
+        GameObject newBullet = null;
+
+        if (string.Compare(gameObject.name, "Turret") == 1) {
+            Debug.Log("TurretBeforeInstance");
+            newBullet = ObjectPoolScript.instance.GetPoolObject();
+            Debug.Log("TurretAfterInstance");
+        }
+        else if (string.Compare(gameObject.name, "BlasterTurret") == 1)
+        {
+            Debug.Log("BlasterTurretBeforeInstance");
+            newBullet = ObjectPoolFireballScript.instance.GetPoolObject();
+            Debug.Log("BlasterTurretAfterInstance");
+        }
+
+        if (newBullet == null)
         {
             return;
         }

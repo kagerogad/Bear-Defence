@@ -88,9 +88,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4968566155492686}
   - component: {fileID: 114632146037473320}
+  - component: {fileID: 65240669731696506}
   m_Layer: 0
   m_Name: BlasterTurret
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,7 +146,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1794993141861402}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.09567547, y: 0.02, z: 6.2670016}
+  m_LocalPosition: {x: 15.745082, y: 1.77, z: 3.3797674}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224196433948659882}
@@ -196,6 +197,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1001378867311744}
   m_Mesh: {fileID: 4300000, guid: 0efd6d274952449919e41361d25e90f1, type: 3}
+--- !u!65 &65240669731696506
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1794993141861402}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.3691921, y: 2.2537417, z: 2.2311277}
+  m_Center: {x: -0.07499695, y: 0.6268709, z: 0.46988106}
 --- !u!114 &114341771816756038
 MonoBehaviour:
   m_ObjectHideFlags: 1
