@@ -22,7 +22,6 @@ public class World {
 				tiles [x, y] = new Tile (this, (x - ofs) * offset, (y - ofs) * offset);
 			}
 		}
-		Debug.Log("World Created With " + (width * height) + " tiles");
 	}
 
 	public void RandomizeTiles() {

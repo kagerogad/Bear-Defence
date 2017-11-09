@@ -135,7 +135,6 @@ public class Turret : PlaceableObject, IsDamageable {
 		Quaternion lookRotation = Quaternion.LookRotation (dir);
 
 		Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
-		Debug.Log (rotation);
 		partToRotate.rotation = Quaternion.Euler (0f, rotation.y, 0f);
 	}
 
@@ -143,15 +142,11 @@ public class Turret : PlaceableObject, IsDamageable {
         GameObject newBullet = null;
 
         if (string.Compare(gameObject.name, "Turret") == 1) {
-            Debug.Log("TurretBeforeInstance");
             newBullet = ObjectPoolScript.instance.GetPoolObject();
-            Debug.Log("TurretAfterInstance");
         }
         else if (string.Compare(gameObject.name, "BlasterTurret") == 1)
         {
-            Debug.Log("BlasterTurretBeforeInstance");
             newBullet = ObjectPoolFireballScript.instance.GetPoolObject();
-            Debug.Log("BlasterTurretAfterInstance");
         }
 
         if (newBullet == null)

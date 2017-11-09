@@ -77,7 +77,6 @@ public class GameManager : MonoBehaviour {
 			timer -= Time.deltaTime;
 			if (timer <= 0f && enemyCurrentCurrency > 0f) {
 				SpawnEnemy (enemyArray.enemies[0]);
-				Debug.Log (enemyCurrentCurrency);
 				timer = timeBetweenSpawns;
 			}
 			if (enemyCurrentCurrency <= 0f) {
@@ -115,7 +114,6 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public bool GetPhase() {
-		Debug.Log ("round started" + roundStarted);
 		return roundStarted;
 	}
 
@@ -126,7 +124,6 @@ public class GameManager : MonoBehaviour {
 	void SpawnEnemy(GameObject enemy) {
 		int randomIndex = rand.Next (0, enemySpawners.Length);
 		float cost = enemy.GetComponent<Enemy> ().cost;
-		Debug.Log (cost);
 		enemyCurrentCurrency = enemyCurrentCurrency - cost;
 		enemySpawners [randomIndex].GetComponent<Spawner> ().Spawn (enemy);
 		return;
