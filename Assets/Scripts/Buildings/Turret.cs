@@ -27,6 +27,7 @@ public class Turret : PlaceableObject, IsDamageable {
 	private Transform target;
 	private bool isOn;
 	private float durability;
+	protected bool isBuildStage;
 
 	void Start() {
 		rateOfFire_ = rateOfFire;
@@ -45,6 +46,8 @@ public class Turret : PlaceableObject, IsDamageable {
 			}
 			return;
 		}
+
+		isBuildStage = GameManager.instance.GetPhase ();
 
 		if (!isOn) {
 			if (lineRenderer != null && lineRenderer.enabled) {
@@ -196,7 +199,7 @@ public class Turret : PlaceableObject, IsDamageable {
 		if (go.CompareTag("Battery")) {
 			bat = go.GetComponent<Battery> ();
 		}
-		if (bat != null) {
+		if (bat != null && isBuildStage) {
 			bat.Discharge (.1f);
 		}
 	}

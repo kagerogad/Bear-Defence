@@ -22,7 +22,6 @@ public class TileHighlightController : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter(Collider col) {
-		Debug.Log ("Collider called");
 		GameObject go = col.gameObject;
 		if (go.CompareTag("Tile")) {
 			go.GetComponent<SpriteRenderer> ().enabled = true;

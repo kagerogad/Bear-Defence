@@ -114,6 +114,11 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
+	public bool GetPhase() {
+		Debug.Log ("round started" + roundStarted);
+		return roundStarted;
+	}
+
 	bool CheckIfNoEnemiesAlive() {
 		GameObject[] enems = GameObject.FindGameObjectsWithTag ("Enemy");
 		return enems.Length <= 0f;
