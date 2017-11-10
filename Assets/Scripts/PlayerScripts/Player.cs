@@ -73,7 +73,11 @@ public class Player : MonoBehaviour {
 		}
 
 		if (swing && selectedObject != null && selectedObject.CompareTag("Turret")) {
-			selectedObject.GetComponent<Turret> ().Heal (10f);
+			if (selectedObject.GetComponent<Turret> () != null) {
+				selectedObject.GetComponent<Turret> ().Heal (10f);
+			} else {
+				selectedObject.GetComponent<tp> ().Heal (10f);
+			}
 		}
 
 		if (Input.GetKeyDown(KeyCode.F) & buildTimer <= 0f) {
