@@ -853,7 +853,7 @@ MonoBehaviour:
   batteryRange: 20
   turnSpeed: 15
   rateOfFire: 0.05
-  startDurability: 100
+  startDurability: 1000
   durabilityLossPerShot: 10
   useLazer: 0
   lineRenderer: {fileID: 0}
