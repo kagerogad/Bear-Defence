@@ -9,6 +9,7 @@ public class Projectile : MonoBehaviour {
 	public float Speed;
 	public float damage;
 	public float lifeTime = 3f;
+	public GameObject effect;
 
 	protected Vector3 dir;
 
@@ -53,6 +54,8 @@ public class Projectile : MonoBehaviour {
 
 		if (go.CompareTag("Enemy")) {
 			go.GetComponent<Enemy> ().TakeDamage (damage);
+			GameObject ef = (GameObject)Instantiate (effect, transform.position, transform.rotation);
+			Destroy (ef, 0.2f);
 			RemoveObject();
 		}
 	}

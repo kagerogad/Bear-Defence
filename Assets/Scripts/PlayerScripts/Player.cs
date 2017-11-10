@@ -57,9 +57,7 @@ public class Player : MonoBehaviour {
 		Move (horizontal, vertical);
 		Turn ();
 		Animate (horizontal, vertical, swing);
-		if (selectedObject != null) {
-			Debug.Log (selectedObject.tag);
-		}
+
 
 		if (isObjectSelected && !isCarrying && Input.GetKeyDown(KeyCode.E)) {
 			if (pickupTimer <= 0f) {
@@ -75,7 +73,11 @@ public class Player : MonoBehaviour {
 		}
 
 		if (swing && selectedObject != null && selectedObject.CompareTag("Turret")) {
-			selectedObject.GetComponent<Turret> ().Heal (10f);
+			if (selectedObject.GetComponent<Turret> () != null) {
+				selectedObject.GetComponent<Turret> ().Heal (10f);
+			} else {
+				selectedObject.GetComponent<tp> ().Heal (10f);
+			}
 		}
 
 		if (Input.GetKeyDown(KeyCode.F) & buildTimer <= 0f) {
@@ -157,6 +159,7 @@ public class Player : MonoBehaviour {
 
 	public void Damage(float damage) {
 		health -= damage;
+
 		if (health <= 0f) {
 			GameManager.instance.SetIsDead (true);
 		}

@@ -9,6 +9,7 @@ public class Drop : MonoBehaviour {
 	public float yLimit = 2f;
 	public float disappearTimer = 3f;
 	public float scrapAmount = 25f;
+	public GameObject effect;
 
 
 	// Update is called once per frame
@@ -41,6 +42,8 @@ public class Drop : MonoBehaviour {
 		if (go.CompareTag("Player")) {
 			float playerCurrency = GameManager.instance.playerCurrency;
 			GameManager.instance.playerCurrency = playerCurrency + scrapAmount;
+			GameObject ef = (GameObject)Instantiate (effect, transform.position + new Vector3(0f, 2f, 0), Quaternion.identity);
+			Destroy (ef, 0.2f);
 			Destroy (gameObject);
 		}
 	}

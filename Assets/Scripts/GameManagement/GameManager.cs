@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject selectionMenu;
 	public GameObject gameOverPanel;
 	public Text gameOverRoundText;
+	public GameObject turretPanel;
 
 	private AudioSource gameMusic;
 
@@ -55,7 +56,9 @@ public class GameManager : MonoBehaviour {
 		} else if (instance != this) {
 			Destroy (gameObject);
 		}
-
+		if (Time.timeScale == 0f) {
+			Time.timeScale = 1f;
+		}
 		gameMusic = GetComponent<AudioSource> ();
 		gameMusic.volume = PlayerPrefs.GetFloat("MusicVolume");
 		enemyCurrentCurrency = enemyStartCurrency;
@@ -70,10 +73,10 @@ public class GameManager : MonoBehaviour {
 
 	void Update() {
 		if (roundStarted) {
+			turretPanel.SetActive (false);
 			timer -= Time.deltaTime;
 			if (timer <= 0f && enemyCurrentCurrency > 0f) {
 				SpawnEnemy (enemyArray.enemies[0]);
-				Debug.Log (enemyCurrentCurrency);
 				timer = timeBetweenSpawns;
 			}
 			if (enemyCurrentCurrency <= 0f) {
@@ -86,6 +89,7 @@ public class GameManager : MonoBehaviour {
 
 		if (!roundStarted) {
 			tiles.SetActive (true);
+			turretPanel.SetActive (true);
 			timeBuildPhase_ -= Time.deltaTime;
 			roundCounter.text = timeBuildPhase_.ToString ();
 
@@ -109,6 +113,10 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
+	public bool GetPhase() {
+		return roundStarted;
+	}
+
 	bool CheckIfNoEnemiesAlive() {
 		GameObject[] enems = GameObject.FindGameObjectsWithTag ("Enemy");
 		return enems.Length <= 0f;
@@ -116,7 +124,6 @@ public class GameManager : MonoBehaviour {
 	void SpawnEnemy(GameObject enemy) {
 		int randomIndex = rand.Next (0, enemySpawners.Length);
 		float cost = enemy.GetComponent<Enemy> ().cost;
-		Debug.Log (cost);
 		enemyCurrentCurrency = enemyCurrentCurrency - cost;
 		enemySpawners [randomIndex].GetComponent<Spawner> ().Spawn (enemy);
 		return;
@@ -178,6 +185,7 @@ public class GameManager : MonoBehaviour {
 	//UI
 	public void MenuSelect() {
 		isPaused = !isPaused;
+		BuildManager.instance.isPaused = isPaused;
 		selectionMenu.SetActive (isPaused);
 		if (isPaused) {
 			Time.timeScale = 0;

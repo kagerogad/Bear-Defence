@@ -53,7 +53,6 @@ public class BatteryVisuals : MonoBehaviour
     public void setCharge(int chargeValue)
     {
         charge = chargeValue;
-        Debug.Log(charge);
         if (charge >= 70)
         {
             //Debug.Log("3 Full bars");

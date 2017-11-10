@@ -7,20 +7,25 @@ public class TileHighlightController : MonoBehaviour {
 	BoxCollider bc;
 	List<GameObject> tiles = new List<GameObject>();
 
-	private IEnumerator coroutine;
-
 	// Use this for initialization
 	void Start () {
 		bc = GetComponent<BoxCollider> ();
 		//coroutine = DumpTiles(5f);
 		//StartCoroutine(coroutine);
 	}
+
+	void Highlight(GameObject tile) {
+		tile.GetComponent<TileSelectController> ().isHighlighted = true;
+	}
+	void UnHighlight(GameObject tile) {
+		tile.GetComponent<TileSelectController> ().isHighlighted = false;
+	}
 	
 	void OnTriggerEnter(Collider col) {
-		Debug.Log ("Collider called");
 		GameObject go = col.gameObject;
 		if (go.CompareTag("Tile")) {
 			go.GetComponent<SpriteRenderer> ().enabled = true;
+			Highlight (go);
 		}
 	}
 
@@ -28,6 +33,7 @@ public class TileHighlightController : MonoBehaviour {
 		GameObject go = col.gameObject;
 		if (go.CompareTag("Tile")) {
 			go.GetComponent<SpriteRenderer> ().enabled = true;
+			Highlight (go);
 		}
 	}
 
@@ -36,17 +42,8 @@ public class TileHighlightController : MonoBehaviour {
 		if (go.CompareTag("Tile")) {
 			go.GetComponent<SpriteRenderer> ().enabled = false;
 			tiles.Add (go);
+			UnHighlight (go);
 		}
 	}
-
-	/*private IEnumerator DumpTiles(float waitTime)
-	{
-		while (true)
-		{
-			yield return new WaitForSeconds(waitTime);
-			foreach (GameObject tiles in tiles) {
-				tiles.GetComponent<SpriteRenderer> ().enabled = false;
-			}
-		}
-	}*/
+		
 }

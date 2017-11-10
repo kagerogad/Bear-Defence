@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Turret : PlaceableObject, IsDamageable {
-
+    
 	[Header("Turret Attributes")]
 	public string enemyTag;
 	public float range;
@@ -18,7 +18,7 @@ public class Turret : PlaceableObject, IsDamageable {
 
 	private float rateOfFire_;
 
-	[Header("Turret References")]
+    [Header("Turret References")]
 	public Transform partToRotate;
 	public Transform firingPoint;
 	public Image durabilityBar;
@@ -27,10 +27,12 @@ public class Turret : PlaceableObject, IsDamageable {
 	private Transform target;
 	private bool isOn;
 	private float durability;
+	protected bool isBuildStage;
 
 	void Start() {
 		rateOfFire_ = rateOfFire;
 		durability = startDurability;
+
 		InvokeRepeating ("UpdateTarget", 0f, 0.5f);
 		InvokeRepeating ("UpdateBattery", 0f, 0.3f);
 	}
@@ -45,8 +47,10 @@ public class Turret : PlaceableObject, IsDamageable {
 			return;
 		}
 
+		isBuildStage = GameManager.instance.GetPhase ();
+
 		if (!isOn) {
-			if (lineRenderer.enabled) {
+			if (lineRenderer != null && lineRenderer.enabled) {
 				lineRenderer.enabled = false;
 			}	
 		}
@@ -65,6 +69,7 @@ public class Turret : PlaceableObject, IsDamageable {
 			}
 
 		}
+		Die ();
 	}
 
 	void Lazer() {
@@ -73,7 +78,7 @@ public class Turret : PlaceableObject, IsDamageable {
 		}
 		lineRenderer.SetPosition (0, firingPoint.position);
 		lineRenderer.SetPosition (1, target.position);
-		target.GetComponent<Enemy> ().TakeDamage (.5f);
+		target.GetComponent<Enemy> ().TakeDamage (1.5f);
 	}
 
 	public void UpdateTarget() {
@@ -111,7 +116,7 @@ public class Turret : PlaceableObject, IsDamageable {
 			}
 		}
 
-		if (nearestBattery != null && shortestDistance <= batteryRange) {
+		if (nearestBattery != null && shortestDistance <= batteryRange && !nearestBattery.GetComponent<Battery>().charging) {
 			if (nearestBattery.GetComponent<Battery> ().currentCharge >= 5f) {
 				isOn = true;
 				nearestBattery.GetComponent<Battery> ().Discharge (5f);
@@ -135,13 +140,22 @@ public class Turret : PlaceableObject, IsDamageable {
 	}
 
 	void Fire() {
-        GameObject newBullet = ObjectPoolScript.instance.GetPoolObject();
-        if(newBullet == null)
+        GameObject newBullet = null;
+
+        if (string.Compare(gameObject.name, "Turret") == 1) {
+            newBullet = ObjectPoolScript.instance.GetPoolObject();
+        }
+        else if (string.Compare(gameObject.name, "BlasterTurret") == 1)
+        {
+            newBullet = ObjectPoolFireballScript.instance.GetPoolObject();
+        }
+
+        if (newBullet == null)
         {
             return;
         }
-        newBullet.transform.position = transform.position;
-        newBullet.transform.rotation = transform.rotation;
+		newBullet.transform.position = firingPoint.position;
+		newBullet.transform.rotation = firingPoint.rotation;
         newBullet.SetActive(true);
 		newBullet.GetComponent<Projectile> ().SetTarget (target);
 		durability -= durabilityLossPerShot;
@@ -163,7 +177,9 @@ public class Turret : PlaceableObject, IsDamageable {
 	}
 
 	public void Die() {
-
+		if (durability <= 0f) {
+			Destroy (gameObject);
+		}
 	}
 		
 
@@ -181,7 +197,7 @@ public class Turret : PlaceableObject, IsDamageable {
 		if (go.CompareTag("Battery")) {
 			bat = go.GetComponent<Battery> ();
 		}
-		if (bat != null) {
+		if (bat != null && isBuildStage) {
 			bat.Discharge (.1f);
 		}
 	}
