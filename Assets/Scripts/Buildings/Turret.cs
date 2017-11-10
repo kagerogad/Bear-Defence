@@ -69,6 +69,7 @@ public class Turret : PlaceableObject, IsDamageable {
 			}
 
 		}
+		Die ();
 	}
 
 	void Lazer() {
@@ -77,7 +78,7 @@ public class Turret : PlaceableObject, IsDamageable {
 		}
 		lineRenderer.SetPosition (0, firingPoint.position);
 		lineRenderer.SetPosition (1, target.position);
-		target.GetComponent<Enemy> ().TakeDamage (1f);
+		target.GetComponent<Enemy> ().TakeDamage (1.5f);
 	}
 
 	public void UpdateTarget() {
@@ -115,7 +116,7 @@ public class Turret : PlaceableObject, IsDamageable {
 			}
 		}
 
-		if (nearestBattery != null && shortestDistance <= batteryRange) {
+		if (nearestBattery != null && shortestDistance <= batteryRange && !nearestBattery.GetComponent<Battery>().charging) {
 			if (nearestBattery.GetComponent<Battery> ().currentCharge >= 5f) {
 				isOn = true;
 				nearestBattery.GetComponent<Battery> ().Discharge (5f);
@@ -176,7 +177,9 @@ public class Turret : PlaceableObject, IsDamageable {
 	}
 
 	public void Die() {
-
+		if (durability <= 0f) {
+			Destroy (gameObject);
+		}
 	}
 		
 

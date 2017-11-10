@@ -10,6 +10,7 @@ public class Battery : InteractableObject {
 	public Image chargeBar;
 
 	public float currentCharge;
+	public bool charging;
 
 	/*Renderer rend;
 	Color startColor;*/

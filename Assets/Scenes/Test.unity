@@ -576,6 +576,7 @@ GameObject:
   - component: {fileID: 204847858}
   - component: {fileID: 204847857}
   - component: {fileID: 204847856}
+  - component: {fileID: 204847859}
   m_Layer: 5
   m_Name: StartRoundButton
   m_TagString: Untagged
@@ -702,6 +703,17 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 204847854}
+--- !u!114 &204847859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 204847854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4feb298eb49c340479cd7d825b510288, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &213800155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1851,6 +1863,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 10
   chargeAmount: 3
+--- !u!65 &1055814514
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1055814507}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 7, y: 7, z: 0.2}
+  m_Center: {x: 0.1726116, y: 0.19, z: 1.02}
 --- !u!1001 &1061116651
 Prefab:
   m_ObjectHideFlags: 0
@@ -2428,9 +2452,88 @@ Prefab:
       value: 
       objectReference: {fileID: 1794993141861402, guid: 263df216f96d54a06b28c3d3dfcbd2ba,
         type: 2}
+    - target: {fileID: 114980935023135712, guid: 425412b6228484cb7aec286b144eab28,
+        type: 2}
+      propertyPath: Dturret
+      value: 
+      objectReference: {fileID: 1533040035325458, guid: 11078b7844d65b244ba69a876fec855b,
+        type: 2}
+    - target: {fileID: 114980935023135712, guid: 425412b6228484cb7aec286b144eab28,
+        type: 2}
+      propertyPath: DturretImage
+      value: 
+      objectReference: {fileID: 1471719566}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 425412b6228484cb7aec286b144eab28, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1471719564
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1471719565}
+  - component: {fileID: 1471719567}
+  - component: {fileID: 1471719566}
+  m_Layer: 5
+  m_Name: Dturret
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1471719565
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1471719564}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1993559852}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1471719566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1471719564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 865c8e0d2039749bfbf187f539eb9123, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &1471719567
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1471719564}
 --- !u!1001 &1622015195
 Prefab:
   m_ObjectHideFlags: 0
@@ -3055,6 +3158,7 @@ RectTransform:
   - {fileID: 567484264}
   - {fileID: 1278487638}
   - {fileID: 178668632}
+  - {fileID: 1471719565}
   m_Father: {fileID: 1829887297}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

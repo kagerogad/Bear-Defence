@@ -13,8 +13,11 @@ public class SolarPanel : MonoBehaviour {
 	}
 
 	void Update() {
-		if (isBatteryNear()) {
+		if (isBatteryNear ()) {
 			battery.GetComponent<Battery> ().Charge (chargeAmount);
+			battery.GetComponent<Battery> ().charging = true;
+		} else {
+			battery.GetComponent<Battery> ().charging = false;
 		}
 	}
 
