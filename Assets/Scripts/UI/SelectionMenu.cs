@@ -28,9 +28,6 @@ public class SelectionMenu : MonoBehaviour {
 		}
 		SceneManager.LoadScene (0);
 	}
-
-	public void OpenSettings() {
-
-	}
+		
 
 }
