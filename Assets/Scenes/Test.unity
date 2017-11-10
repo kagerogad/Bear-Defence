@@ -576,6 +576,7 @@ GameObject:
   - component: {fileID: 204847858}
   - component: {fileID: 204847857}
   - component: {fileID: 204847856}
+  - component: {fileID: 204847859}
   m_Layer: 5
   m_Name: StartRoundButton
   m_TagString: Untagged
@@ -702,6 +703,17 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 204847854}
+--- !u!114 &204847859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 204847854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4feb298eb49c340479cd7d825b510288, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &213800155
 MonoBehaviour:
   m_ObjectHideFlags: 0
