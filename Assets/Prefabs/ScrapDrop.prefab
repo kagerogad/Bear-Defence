@@ -204,9 +204,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25e7b5d309e894b8bb1c8e8c2e67f292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateSpeed: 5
+  rotateSpeed: 20
   bobSpeed: 1
   yLimit: 2
-  disappearTimer: 3
+  disappearTimer: 10
   scrapAmount: 25
   effect: {fileID: 1950379272962578, guid: f09de36aaeed4408593576bea210d779, type: 2}

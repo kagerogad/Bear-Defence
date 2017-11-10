@@ -57,9 +57,7 @@ public class Player : MonoBehaviour {
 		Move (horizontal, vertical);
 		Turn ();
 		Animate (horizontal, vertical, swing);
-		if (selectedObject != null) {
-			Debug.Log (selectedObject.tag);
-		}
+
 
 		if (isObjectSelected && !isCarrying && Input.GetKeyDown(KeyCode.E)) {
 			if (pickupTimer <= 0f) {
@@ -157,6 +155,7 @@ public class Player : MonoBehaviour {
 
 	public void Damage(float damage) {
 		health -= damage;
+
 		if (health <= 0f) {
 			GameManager.instance.SetIsDead (true);
 		}
