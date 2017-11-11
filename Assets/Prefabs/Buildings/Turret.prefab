@@ -317,6 +317,8 @@ MonoBehaviour:
   rateOfFire: 0.3
   startDurability: 300
   durabilityLossPerShot: 10
+  useLazer: 0
+  lineRenderer: {fileID: 0}
   partToRotate: {fileID: 4561586316155552}
   firingPoint: {fileID: 4912949794526300}
   durabilityBar: {fileID: 114575430248033040}
