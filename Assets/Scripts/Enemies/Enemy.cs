@@ -13,8 +13,9 @@ public class Enemy : MonoBehaviour, IsDamageable {
 	public float cost;
 	public int chanceOfDrop;
 	public float attackRange;
+    public float dropValue;
 
-	[Header("References")]
+    [Header("References")]
 	public Image healthBar;
 	public GameObject drop;
 
@@ -94,7 +95,8 @@ public class Enemy : MonoBehaviour, IsDamageable {
 	public void DropObject(GameObject drop) {
 		int randomInt = GameManager.rand.Next (0, 100);
 		if (randomInt <= chanceOfDrop) {
-			Instantiate (drop, transform.position + offSet, transform.rotation);
+			GameObject drp = (GameObject)Instantiate (drop, transform.position + offSet, transform.rotation);
+            drp.GetComponent<Drop>().scrapAmount = dropValue;
 		}
 	}
 		
