@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 65052835603890824}
   - component: {fileID: 23198847336644856}
   - component: {fileID: 114436359832573160}
+  - component: {fileID: 65745356403396020}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Turret
@@ -247,7 +248,19 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!65 &65745356403396020
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1285507479562686}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!65 &65947177486579990
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -317,6 +330,8 @@ MonoBehaviour:
   rateOfFire: 0.3
   startDurability: 300
   durabilityLossPerShot: 10
+  useLazer: 0
+  lineRenderer: {fileID: 0}
   partToRotate: {fileID: 4561586316155552}
   firingPoint: {fileID: 4912949794526300}
   durabilityBar: {fileID: 114575430248033040}

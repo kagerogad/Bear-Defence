@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour, IsDamageable {
 
 	// Use this for initialization
 	void Start () {
-		player = GameObject.Find("Bear").transform;
+		player = GameObject.Find("Bear1").transform;
 		nav = GetComponent<NavMeshAgent> ();
 
 		health = startHealth;
