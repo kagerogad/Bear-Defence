@@ -15,6 +15,9 @@ public class Player : MonoBehaviour {
 	public Transform holdPosition;
 	public Image healthBar;
 	public GameObject building;
+	public GameObject header;
+
+	public SkinnedMeshRenderer renderer;
 
 	private Rigidbody playerRB;
 	private Vector3 movement;
@@ -55,7 +58,7 @@ public class Player : MonoBehaviour {
 	void FixedUpdate() {
 		float horizontal = Input.GetAxisRaw ("Horizontal");
 		float vertical = Input.GetAxisRaw ("Vertical");
-		swing = Input.GetKeyDown (KeyCode.R);
+		swing = Input.GetKeyDown(KeyCode.Space);
 
 		Move (horizontal, vertical);
 		Turn ();
@@ -168,6 +171,7 @@ public class Player : MonoBehaviour {
 
 	public void Damage(float damage) {
 		health -= damage;
+		header.GetComponent<Animator> ().SetTrigger ("TakeDamage");
 
         if (health >= 100f)
         {

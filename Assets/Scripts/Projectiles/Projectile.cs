@@ -8,8 +8,11 @@ public class Projectile : MonoBehaviour {
 
 	public float Speed;
 	public float damage;
+	public float heal;
 	public float lifeTime = 3f;
 	public GameObject effect;
+
+	public bool isNail;
 
 	protected Vector3 dir;
 
@@ -51,12 +54,17 @@ public class Projectile : MonoBehaviour {
 
     void OnTriggerEnter(Collider col) {
 		GameObject go = col.gameObject;
-
+		Debug.Log (go.gameObject.name);
 		if (go.CompareTag("Enemy")) {
 			go.GetComponent<Enemy> ().TakeDamage (damage);
 			GameObject ef = (GameObject)Instantiate (effect, transform.position, transform.rotation);
 			Destroy (ef, 0.2f);
 			RemoveObject();
+		} else if (go.CompareTag("Turret") && isNail) {
+			go.GetComponent<Turret> ().Heal (heal);
+			GameObject ef = (GameObject)Instantiate (effect, transform.position, transform.rotation);
+			Destroy (ef, 0.2f);
+			RemoveObject ();
 		}
 	}
 		
