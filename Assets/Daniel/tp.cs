@@ -125,7 +125,7 @@ public class tp : PlaceableObject, IsDamageable
             }
         }
 
-        if (nearestBattery != null && shortestDistance <= batteryRange)
+		if (nearestBattery != null && shortestDistance <= batteryRange && !nearestBattery.GetComponent<Battery>().charging)
         {
             if (nearestBattery.GetComponent<Battery>().currentCharge >= 5f)
             {

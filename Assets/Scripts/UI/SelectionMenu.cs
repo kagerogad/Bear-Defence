@@ -28,6 +28,6 @@ public class SelectionMenu : MonoBehaviour {
 		}
 		SceneManager.LoadScene (0);
 	}
-
+		
 
 }

@@ -6,13 +6,24 @@ public class NailGun : GunBaseClass {
 
 
 	void Update() {
-		if (Input.GetKeyDown(KeyCode.G)) {
+		if (Input.GetKeyDown(KeyCode.Space)) {
 			Fire ();
 		}
 	}
+		
 
 	void Fire() {
-		GameObject proj = (GameObject)Instantiate (projectile, FirePosition.position, FirePosition.rotation);
-		proj.GetComponent<Projectile> ().SetTarget (target);
+
+		GameObject newbullet = null;
+
+		newbullet = ObjectPoolNails.instance.GetPoolObject ();
+
+		if (newbullet == null) {
+			return;
+		}
+
+		newbullet.transform.SetPositionAndRotation (FirePosition.position, FirePosition.rotation);
+		newbullet.SetActive (true);
+		newbullet.GetComponent<Projectile> ().SetTarget (target);
 	}
 }

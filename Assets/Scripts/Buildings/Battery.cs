@@ -10,6 +10,7 @@ public class Battery : InteractableObject {
 	public Image chargeBar;
 
 	public float currentCharge;
+	public bool charging;
 
 	/*Renderer rend;
 	Color startColor;*/
@@ -22,7 +23,7 @@ public class Battery : InteractableObject {
 		
 
 	public void Discharge(float discharge) {
-		if (currentCharge > 0) {
+		if (currentCharge > 0 && GameManager.instance.GetPhase()) {
 			currentCharge -= discharge;
 			if (currentCharge < 0) {
 				currentCharge = 0;
@@ -41,7 +42,6 @@ public class Battery : InteractableObject {
 			}
 		}
 		float percentCharged = (currentCharge / capacity) * 100;
-		Debug.Log ("Battery Charge");
 		int curretChargeInt = (int)percentCharged;
 		gameObject.GetComponent<BatteryVisuals>().setCharge(curretChargeInt);
 		chargeBar.fillAmount = currentCharge / capacity;

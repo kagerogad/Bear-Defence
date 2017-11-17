@@ -27,6 +27,7 @@ public class Turret : PlaceableObject, IsDamageable {
 	private Transform target;
 	private bool isOn;
 	private float durability;
+	protected bool isBuildStage;
 
 	void Start() {
 		rateOfFire_ = rateOfFire;
@@ -45,6 +46,8 @@ public class Turret : PlaceableObject, IsDamageable {
 			}
 			return;
 		}
+
+		isBuildStage = GameManager.instance.GetPhase ();
 
 		if (!isOn) {
 			if (lineRenderer != null && lineRenderer.enabled) {
@@ -66,6 +69,7 @@ public class Turret : PlaceableObject, IsDamageable {
 			}
 
 		}
+		Die ();
 	}
 
 	void Lazer() {
@@ -74,7 +78,7 @@ public class Turret : PlaceableObject, IsDamageable {
 		}
 		lineRenderer.SetPosition (0, firingPoint.position);
 		lineRenderer.SetPosition (1, target.position);
-		target.GetComponent<Enemy> ().TakeDamage (1f);
+		target.GetComponent<Enemy> ().TakeDamage (1.5f);
 	}
 
 	public void UpdateTarget() {
@@ -112,7 +116,7 @@ public class Turret : PlaceableObject, IsDamageable {
 			}
 		}
 
-		if (nearestBattery != null && shortestDistance <= batteryRange) {
+		if (nearestBattery != null && shortestDistance <= batteryRange && !nearestBattery.GetComponent<Battery>().charging) {
 			if (nearestBattery.GetComponent<Battery> ().currentCharge >= 5f) {
 				isOn = true;
 				nearestBattery.GetComponent<Battery> ().Discharge (5f);
@@ -132,7 +136,6 @@ public class Turret : PlaceableObject, IsDamageable {
 		Quaternion lookRotation = Quaternion.LookRotation (dir);
 
 		Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
-		Debug.Log (rotation);
 		partToRotate.rotation = Quaternion.Euler (0f, rotation.y, 0f);
 	}
 
@@ -140,15 +143,11 @@ public class Turret : PlaceableObject, IsDamageable {
         GameObject newBullet = null;
 
         if (string.Compare(gameObject.name, "Turret") == 1) {
-            Debug.Log("TurretBeforeInstance");
             newBullet = ObjectPoolScript.instance.GetPoolObject();
-            Debug.Log("TurretAfterInstance");
         }
         else if (string.Compare(gameObject.name, "BlasterTurret") == 1)
         {
-            Debug.Log("BlasterTurretBeforeInstance");
             newBullet = ObjectPoolFireballScript.instance.GetPoolObject();
-            Debug.Log("BlasterTurretAfterInstance");
         }
 
         if (newBullet == null)
@@ -178,7 +177,9 @@ public class Turret : PlaceableObject, IsDamageable {
 	}
 
 	public void Die() {
-
+		if (durability <= 0f) {
+			Destroy (gameObject);
+		}
 	}
 		
 
@@ -196,7 +197,7 @@ public class Turret : PlaceableObject, IsDamageable {
 		if (go.CompareTag("Battery")) {
 			bat = go.GetComponent<Battery> ();
 		}
-		if (bat != null) {
+		if (bat != null && isBuildStage) {
 			bat.Discharge (.1f);
 		}
 	}

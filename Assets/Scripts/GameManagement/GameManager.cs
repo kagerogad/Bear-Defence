@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour {
 
 
 
-	[Header("Game Settings")]
+
+    [Header("Game Settings")]
 	public float enemyStartCurrency = 100f;
 	public float playerCurrency = 100f;
 	public float enemyCurrencyMultiplier = 1.5f;
@@ -76,8 +77,7 @@ public class GameManager : MonoBehaviour {
 			turretPanel.SetActive (false);
 			timer -= Time.deltaTime;
 			if (timer <= 0f && enemyCurrentCurrency > 0f) {
-				SpawnEnemy (enemyArray.enemies[0]);
-				Debug.Log (enemyCurrentCurrency);
+				SpawnEnemy (enemyArray.enemies[rand.Next(0,(enemyArray.enemies.Length)-1)]);
 				timer = timeBetweenSpawns;
 			}
 			if (enemyCurrentCurrency <= 0f) {
@@ -89,9 +89,9 @@ public class GameManager : MonoBehaviour {
 		}
 
 		if (!roundStarted) {
-			tiles.SetActive (true);
-			turretPanel.SetActive (true);
-			timeBuildPhase_ -= Time.deltaTime;
+            tiles.SetActive (true);
+            turretPanel.SetActive (true);
+            timeBuildPhase_ -= Time.deltaTime;
 			roundCounter.text = timeBuildPhase_.ToString ();
 
 			if (timeBuildPhase_ <= 0f) {
@@ -114,16 +114,19 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
+	public bool GetPhase() {
+		return roundStarted;
+	}
+
 	bool CheckIfNoEnemiesAlive() {
 		GameObject[] enems = GameObject.FindGameObjectsWithTag ("Enemy");
 		return enems.Length <= 0f;
 	}
 	void SpawnEnemy(GameObject enemy) {
-		int randomIndex = rand.Next (0, enemySpawners.Length);
-		float cost = enemy.GetComponent<Enemy> ().cost;
-		Debug.Log (cost);
+		int randomIndex = rand.Next(0, enemySpawners.Length);
+		float cost = enemy.GetComponent<Enemy>().cost;
 		enemyCurrentCurrency = enemyCurrentCurrency - cost;
-		enemySpawners [randomIndex].GetComponent<Spawner> ().Spawn (enemy);
+		enemySpawners[randomIndex].GetComponent<Spawner>().Spawn (enemy);
 		return;
 	}
 
@@ -145,6 +148,9 @@ public class GameManager : MonoBehaviour {
 		playerCurrencyText.text = playerCurrency.ToString();
 	}
 
+    /*public void flushHighlights() {
+        Delete(tiles);
+    }*/
 
 	//Building
 	/*public void Build() {
@@ -191,5 +197,11 @@ public class GameManager : MonoBehaviour {
 			Time.timeScale = 1;
 		}
 	}
-		
+
+
+    /*IEnumerator Waiter()
+    {
+        Debug.Log("WAITER IS WAITING");
+        yield return new WaitForSeconds(200f);
+    }*/
 }
